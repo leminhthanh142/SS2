@@ -29,9 +29,11 @@ export const SignUpPage = () => {
             <AddCircleOutlineOutlined />
           </Avatar>
           <h2 style={headerStyle}>Sign Up</h2>
-          <Typography variant="caption" gutterBottom>
-            Please fill this form to create an account !
-          </Typography>
+          <Box marginBottom={2}>
+            <Typography variant="caption" gutterBottom>
+              Please fill this form to create an account !
+            </Typography>
+          </Box>
         </Grid>
         <form>
           <Box marginBottom={2}>
