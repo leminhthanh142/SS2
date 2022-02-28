@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/sign-in" element={<DashBoard />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
