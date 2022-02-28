@@ -11,7 +11,8 @@ import {
   FormControlLabel,
   FormControl,
   RadioGroup,
-  Radio
+  Radio,
+  Box
 } from '@mui/material';
 import { AddCircleOutlineOutlined } from '@mui/icons-material';
 
@@ -33,8 +34,12 @@ export const SignUpPage = () => {
           </Typography>
         </Grid>
         <form>
-          <TextField fullWidth label="Name" placeholder="Enter your name" />
-          <TextField fullWidth label="Email" placeholder="Enter your email" />
+          <Box marginBottom={2}>
+            <TextField fullWidth label="Name" placeholder="Enter your name" />
+          </Box>
+          <Box marginBottom={2}>
+            <TextField fullWidth label="Email" placeholder="Enter your email" />
+          </Box>
           <FormControl component="fieldset" style={marginTop}>
             <FormLabel component="legend">Gender</FormLabel>
             <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
@@ -42,9 +47,15 @@ export const SignUpPage = () => {
               <FormControlLabel value="male" control={<Radio />} label="Male" />
             </RadioGroup>
           </FormControl>
-          <TextField fullWidth label="Phone Number" placeholder="Enter your phone number" />
-          <TextField fullWidth label="Password" placeholder="Enter your password" />
-          <TextField fullWidth label="Confirm Password" placeholder="Confirm your password" />
+          <Box marginBottom={2}>
+            <TextField fullWidth label="Phone Number" placeholder="Enter your phone number" />
+          </Box>
+          <Box marginBottom={2}>
+            <TextField fullWidth label="Password" placeholder="Enter your password" />
+          </Box>
+          <Box marginBottom={2}>
+            <TextField fullWidth label="Confirm Password" placeholder="Confirm your password" />
+          </Box>
           <FormControlLabel
             control={<Checkbox name="checkedA" />}
             label="I accept the terms and conditions."
