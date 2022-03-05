@@ -1,6 +1,14 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, TextareaAutosize } from '@mui/material';
+import CodeEditor from '../components/modules/CodeEditor';
 
 export const HomePage = () => {
-  return <Box>HomePage</Box>;
+  return (
+    <Box>
+      <CodeEditor />
+      <Box>
+        <TextareaAutosize minRows={5} placeholder={'Output'} />
+      </Box>
+    </Box>
+  );
 };
