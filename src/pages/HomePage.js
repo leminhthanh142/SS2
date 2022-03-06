@@ -6,9 +6,6 @@ export const HomePage = () => {
   return (
     <Box>
       <CodeEditor />
-      <Box>
-        <TextareaAutosize minRows={5} placeholder={'Output'} />
-      </Box>
     </Box>
   );
 };

@@ -23,13 +23,13 @@ themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 /*eslint-disable no-alert, no-console */
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
-import { Button } from '@mui/material';
+import { Button, TextareaAutosize } from '@mui/material';
 import { customAxios } from '../../customAxios';
 
-const defaultValue = `class JavaIsNotSoHard {
-  String private text = 'Hello World';
-  
+const defaultValue = `public class Code {
+
   public static void main (String[] args) {
+    String text = "Hello";
     System.out.println(text);
   }
 }`;
@@ -41,6 +41,7 @@ export default class CodeEditor extends React.Component {
       value: defaultValue,
       theme: 'solarized_dark',
       mode: 'java',
+      output: { content: '', error: '' },
       fontSize: 14
     };
     this.setTheme = this.setTheme.bind(this);
@@ -71,8 +72,17 @@ export default class CodeEditor extends React.Component {
     });
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     console.log(this.state.value);
+    const code = this.state.value;
+    const res = await customAxios.post('/test', code, {
+      headers: {
+        'Content-Length': 0,
+        'Content-Type': 'text/plain'
+      }
+    });
+    console.log(res.data);
+    this.setState({ output: res.data });
   }
 
   render() {
@@ -134,6 +144,7 @@ export default class CodeEditor extends React.Component {
         <Button sx={{ mt: 2 }} variant={'contained'} color={'primary'} onClick={this.handleSubmit}>
           Submit
         </Button>
+        <TextareaAutosize minRows={5} placeholder={'Output'} value={this.state.output.error} />
       </div>
     );
   }
