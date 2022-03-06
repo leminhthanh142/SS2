@@ -1,6 +1,7 @@
 import React from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
+import { Box, FormControl, OutlinedInput, TextField } from '@mui/material';
 
 const themes = [
   'monokai',
@@ -26,11 +27,9 @@ import 'ace-builds/src-min-noconflict/ext-language_tools';
 import { Button, TextareaAutosize } from '@mui/material';
 import { customAxios } from '../../customAxios';
 
-const defaultValue = `public class Code {
-
-  public static void main (String[] args) {
-    String text = "Hello";
-    System.out.println(text);
+const defaultValue = `public class SmashWords {
+  public static String smash(String... words) {
+    return String.join(" ", words);
   }
 }`;
 
@@ -42,7 +41,10 @@ export default class CodeEditor extends React.Component {
       theme: 'solarized_dark',
       mode: 'java',
       output: { content: '', error: '' },
-      fontSize: 14
+      fontSize: 14,
+      error: {
+        color: 'red'
+      }
     };
     this.setTheme = this.setTheme.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -87,9 +89,9 @@ export default class CodeEditor extends React.Component {
 
   render() {
     return (
-      <div className="columns">
-        <div className="column">
-          <div className="field">
+      <div>
+        <Box display={'flex'} alignItems={'center'} width={'100%'}>
+          <Box display={'flex'} alignItems={'center'}>
             <label>Theme:</label>
             <p className="control">
               <span className="select">
@@ -102,9 +104,9 @@ export default class CodeEditor extends React.Component {
                 </select>
               </span>
             </p>
-          </div>
+          </Box>
 
-          <div className="field">
+          <Box ml={2} display={'flex'} alignItems={'center'}>
             <label>Font Size:</label>
             <p className="control">
               <span className="select">
@@ -117,13 +119,13 @@ export default class CodeEditor extends React.Component {
                 </select>
               </span>
             </p>
-          </div>
-        </div>
+          </Box>
+        </Box>
         <AceEditor
           mode={this.state.mode}
           theme={this.state.theme}
           name="react-ace-code-editor"
-          width={'100%'}
+          width={1000}
           onChange={this.onChange}
           onValidate={this.onValidate}
           value={this.state.value}
@@ -141,10 +143,41 @@ export default class CodeEditor extends React.Component {
             tabSize: 2
           }}
         />
-        <Button sx={{ mt: 2 }} variant={'contained'} color={'primary'} onClick={this.handleSubmit}>
-          Submit
-        </Button>
-        <TextareaAutosize minRows={5} placeholder={'Output'} value={this.state.output.error} />
+        <Box mt={2}>
+          <Button
+            sx={{ mr: 4 }}
+            variant={'contained'}
+            color={'primary'}
+            onClick={this.handleSubmit}>
+            Submit
+          </Button>
+          {!this.state.output.error && (
+            <TextField
+              multiline
+              rows={4}
+              placeholder={'Output'}
+              value={this.state.output.content}
+              sx={{
+                width: 550
+              }}
+            />
+          )}
+          {this.state.output.error && (
+            <TextField
+              multiline
+              rows={4}
+              placeholder={'Output'}
+              value={this.state.output.error}
+              error={true}
+              sx={{
+                width: 550,
+                '& .MuiInputBase-root': {
+                  color: 'red'
+                }
+              }}
+            />
+          )}
+        </Box>
       </div>
     );
   }
