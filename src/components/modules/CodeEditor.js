@@ -24,6 +24,7 @@ themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
 import { Button } from '@mui/material';
+import { customAxios } from '../../customAxios';
 
 const defaultValue = `class JavaIsNotSoHard {
   String private text = 'Hello World';
