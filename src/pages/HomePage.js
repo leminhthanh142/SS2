@@ -17,6 +17,9 @@ export const HomePage = () => {
               sentence!
             </strong>
           </p>
+          <p>
+            <strong>Example</strong>
+          </p>
           <pre>
             <code>
               [&apos;hello&apos;, &apos;world&apos;, &apos;this&apos;, &apos;is&apos;,

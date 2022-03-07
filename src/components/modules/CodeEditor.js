@@ -159,23 +159,23 @@ export default class CodeEditor extends React.Component {
           {!this.state.output.error && (
             <TextField
               multiline
-              rows={4}
+              rows={10}
               placeholder={'Output'}
               value={this.state.output.content}
               sx={{
-                width: 550
+                width: 700
               }}
             />
           )}
           {this.state.output.error && (
             <TextField
               multiline
-              rows={4}
+              rows={10}
               placeholder={'Output'}
               value={this.state.output.error}
               error={true}
               sx={{
-                width: 550,
+                width: 700,
                 '& .MuiInputBase-root': {
                   color: 'red'
                 }
