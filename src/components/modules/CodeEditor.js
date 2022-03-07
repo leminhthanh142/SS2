@@ -27,7 +27,7 @@ import 'ace-builds/src-min-noconflict/ext-language_tools';
 import { Button, TextareaAutosize } from '@mui/material';
 import { customAxios } from '../../customAxios';
 
-const defaultValue = `public class SmashWords {
+const defaultValue = `public class Code {
   public static String smash(String... words) {
     return String.join(" ", words);
   }
