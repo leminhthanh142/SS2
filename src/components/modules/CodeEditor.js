@@ -29,7 +29,7 @@ import { customAxios } from '../../customAxios';
 
 const defaultValue = `public class Code {
   public static void main(String[] args) {
-    String[] words = {['hello', 'world', 'this', 'is', 'great']};
+    String[] words = new String {"hello", "world", "this", "is", "great"};
     String result = smash(words);
     System.out.println(result);
   }
