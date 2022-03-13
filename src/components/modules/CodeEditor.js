@@ -34,6 +34,12 @@ import PropTypes from 'prop-types';
 const defaultValue = `import java.util.*;
 
 public class Kata{
+    public static void main (String[] args) {
+      Integer[] arr = new Integer[]{3,3,3,3,3};
+      boolean isNiceArr = isNice(arr);
+      System.out.println(isNiceArr);
+    }
+    
     public static boolean isNice(Integer[] arr){
         return false;
     }

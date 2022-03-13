@@ -5,12 +5,15 @@ import { styled } from '@mui/styles';
 import { CodeEditor } from '../../components/modules/CodeEditor';
 import { QuestionCardDetails } from '../../components/QuestionCardDetails';
 import { customAxios } from '../../customAxios';
+import { CheckCircle } from '@mui/icons-material';
 
 export const PracticePage = () => {
   const [viewMode, setViewMode] = useState('normal');
   const [output, setOutput] = useState({
-    content: '',
-    error: ''
+    actual: '',
+    error: '',
+    message: '',
+    expected: ''
   });
 
   const handleChangeViewMode = (mode) => {
@@ -24,6 +27,7 @@ export const PracticePage = () => {
         'Content-Type': 'text/plain'
       }
     });
+    console.log(res.data);
     setOutput(res.data);
   };
 
@@ -87,14 +91,20 @@ export const PracticePage = () => {
           )}
           {viewMode === 'output' && (
             <Box height={'calc(100% - 65px)'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
-              {!output.content && !output.error && (
+              {output.message === 'Correct' && (
+                <Box display={'flex'} alignItems={'center'}>
+                  <Typography sx={{ color: '#4bb543' }}>All tests passed</Typography>
+                  <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />
+                </Box>
+              )}
+              {!output.actual && !output.error && (
                 <Box display={'flex'} alignItems={'center'}>
                   <Typography>Calculating Result</Typography>
                   <CircularProgress sx={{ ml: 3 }} size={'25px'} />
                 </Box>
               )}
-              {output.content && <code>{output.content}</code>}
-              {output.error && <code>{output.error}</code>}
+              {/*{output.actual && <code>{output.actual}</code>}*/}
+              {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}
             </Box>
           )}
         </Box>
