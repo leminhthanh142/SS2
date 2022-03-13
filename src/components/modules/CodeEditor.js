@@ -57,7 +57,7 @@ public class SolutionTest {
 }
 `;
 
-export const CodeEditor = ({ onSubmit }) => {
+export const CodeEditor = ({ onSubmit, onChangeViewMode }) => {
   const [value, setValue] = useState(defaultValue);
   const [theme, setTheme] = useState('one_dark');
   const [mode, setMode] = useState('java');
@@ -81,6 +81,7 @@ export const CodeEditor = ({ onSubmit }) => {
 
   const handleSubmit = async () => {
     onSubmit(value);
+    onChangeViewMode('output');
   };
 
   const handleReset = () => {
@@ -175,17 +176,13 @@ export const CodeEditor = ({ onSubmit }) => {
       />
       <Box mt={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
         <Box display={'flex'} alignItems={'center'}>
-          <Button variant={'outlined'} color={'primary'} onClick={handleReset}>
+          <Button variant={'outlined'} color={'primary'} onClick={handleUnlockSolution}>
             <Lock />{' '}
             <Typography sx={{ ml: 1 }} component={'span'}>
               Unlocked Sample Solution
             </Typography>
           </Button>
-          <Button
-            sx={{ ml: 2 }}
-            variant={'outlined'}
-            color={'primary'}
-            onClick={handleUnlockSolution}>
+          <Button sx={{ ml: 2 }} variant={'outlined'} color={'primary'} onClick={handleReset}>
             <Typography component={'span'}>Reset</Typography>
           </Button>
         </Box>
@@ -197,10 +194,7 @@ export const CodeEditor = ({ onSubmit }) => {
   );
 };
 
-const SampleTestContainer = styled(Box)({
-  backgroundColor: 'rgb(19,20,20)'
-});
-
 CodeEditor.propTypes = {
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  onChangeViewMode: PropTypes.func
 };

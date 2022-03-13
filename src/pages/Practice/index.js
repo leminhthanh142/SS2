@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
 import { DashBoard } from '../../components/modules/DashBoard';
 import { styled } from '@mui/styles';
 import { CodeEditor } from '../../components/modules/CodeEditor';
@@ -18,9 +18,9 @@ export const PracticePage = () => {
   };
 
   const handleSubmit = async (code) => {
+    console.log(code);
     const res = await customAxios.post('/test', code, {
       headers: {
-        'Content-Length': 0,
         'Content-Type': 'text/plain'
       }
     });
@@ -86,16 +86,20 @@ export const PracticePage = () => {
             />
           )}
           {viewMode === 'output' && (
-            <Box height={'calc(100% - 65px)'} sx={{ backgroundColor: 'rgb(23,23,25)' }}>
-              <pre>
-                {output.content && <code>{output.content}</code>}
-                {output.error && <code>{output.error}</code>}
-              </pre>
+            <Box height={'calc(100% - 65px)'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
+              {!output.content && !output.error && (
+                <Box display={'flex'} alignItems={'center'}>
+                  <Typography>Calculating Result</Typography>
+                  <CircularProgress sx={{ ml: 3 }} size={'25px'} />
+                </Box>
+              )}
+              {output.content && <code>{output.content}</code>}
+              {output.error && <code>{output.error}</code>}
             </Box>
           )}
         </Box>
         <Box>
-          <CodeEditor onSubmit={handleSubmit} />
+          <CodeEditor onSubmit={handleSubmit} onChangeViewMode={handleChangeViewMode} />
         </Box>
       </Container>
     </>
