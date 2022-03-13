@@ -1,17 +1,14 @@
 import React from 'react';
-import { Box, Button, Card, Typography, Chip } from '@mui/material';
+import { Box, Card, Typography, Chip } from '@mui/material';
 import { styled } from '@mui/styles';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { LocalOfferOutlined } from '@mui/icons-material';
 
-export const QuestionCard = ({
+export const QuestionCardDetails = ({
   title,
   description,
   example,
   note,
-  type,
-  id,
   difficultTag,
   relevantTags
 }) => {
@@ -22,22 +19,10 @@ export const QuestionCard = ({
           <StyledTag sx={{ mr: 2 }} label={difficultTag} />
           <Title>{title}</Title>
         </Box>
-        <Link to={`/${type}/${id}`}>
-          <Button variant={'contained'} color={'primary'}>
-            Start
-          </Button>
-        </Link>
       </Box>
       <Typography>{description}</Typography>
-      {/*<StyledExample component={'pre'}>{example}</StyledExample>*/}
-      {/*{note && (*/}
-      {/*  <Typography>*/}
-      {/*    <Typography component={'span'} sx={{ fontWeight: 700 }}>*/}
-      {/*      Note:{' '}*/}
-      {/*    </Typography>*/}
-      {/*    {note}*/}
-      {/*  </Typography>*/}
-      {/*)}*/}
+      <StyledExample component={'pre'}>{example}</StyledExample>
+      {note && <Typography>{note}</Typography>}
       <Box mt={3} display={'flex'} alignItems={'center'}>
         <LocalOfferOutlined />
         <Box ml={2}>
@@ -50,7 +35,8 @@ export const QuestionCard = ({
 };
 
 const StyledCard = styled(Card)({
-  backgroundColor: 'rgb(60, 60, 60)',
+  height: 'calc(100% - 65px)',
+  backgroundColor: 'rgb(38, 39, 41)',
   padding: '24px',
   color: '#d9d9d9',
   borderRadius: 0
@@ -62,7 +48,8 @@ const Title = styled(Typography)({
 
 const StyledTag = styled(Chip)({
   borderRadius: 4,
-  color: '#d9d9d9'
+  color: '#d9d9d9',
+  backgroundColor: 'rgba(255,255,255,0.1)'
 });
 
 const StyledExample = styled(Typography)({
@@ -77,13 +64,11 @@ const StyledExample = styled(Typography)({
   padding: '0.8571429em 1.1428571em'
 });
 
-QuestionCard.propTypes = {
+QuestionCardDetails.propTypes = {
   title: PropTypes.node.isRequired,
   description: PropTypes.node.isRequired,
   example: PropTypes.node,
   note: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   difficultTag: PropTypes.string.isRequired,
   relevantTags: PropTypes.arrayOf(PropTypes.string).isRequired
 };

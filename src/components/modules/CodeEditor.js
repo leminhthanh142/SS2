@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
-import { Box, FormControl, OutlinedInput, TextField } from '@mui/material';
+import { Box, FormControl, OutlinedInput, TextField, Typography } from '@mui/material';
 
 const themes = [
   'monokai',
@@ -16,7 +16,8 @@ const themes = [
   'terminal',
   'dawn',
   'ambiance',
-  'gruvbox'
+  'gruvbox',
+  'one_dark'
 ];
 
 // eslint-disable-next-line no-undef
@@ -24,166 +25,182 @@ themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 /*eslint-disable no-alert, no-console */
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
-import { Button, TextareaAutosize } from '@mui/material';
+import { Button } from '@mui/material';
 import { customAxios } from '../../customAxios';
+import { styled } from '@mui/styles';
+import { Lock } from '@mui/icons-material';
+import PropTypes from 'prop-types';
 
-const defaultValue = `public class Code {
-  public static void main(String[] args) {
-    String[] words = new String[]{"hello", "world", "this", "is", "great"};
-    String result = smash(words);
-    System.out.println(result);
-  }
-  public static String smash(String... words) {
-    return String.join(" ", words);
-  }
+const defaultValue = `import java.util.*;
+
+public class Kata{
+    public static boolean isNice(Integer[] arr){
+        return false;
+    }
 }`;
 
-export default class CodeEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: defaultValue,
-      theme: 'solarized_dark',
-      mode: 'java',
-      output: { content: '', error: '' },
-      fontSize: 14,
-      error: {
-        color: 'red'
-      }
-    };
-    this.setTheme = this.setTheme.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.setFontSize = this.setFontSize.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const sampleTest = `
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import org.junit.runners.JUnit4;
 
-  onChange(newValue) {
-    this.setState({
-      value: newValue
-    });
-  }
-
-  setTheme(e) {
-    this.setState({
-      theme: e.target.value
-    });
-  }
-
-  onValidate(annotations) {
-    console.log('onValidate', annotations);
-  }
-
-  setFontSize(e) {
-    this.setState({
-      fontSize: parseInt(e.target.value, 10)
-    });
-  }
-
-  async handleSubmit() {
-    console.log(this.state.value);
-    const code = this.state.value;
-    const res = await customAxios.post('/test', code, {
-      headers: {
-        'Content-Length': 0,
-        'Content-Type': 'text/plain'
-      }
-    });
-    console.log(res.data);
-    this.setState({ output: res.data });
-  }
-
-  render() {
-    return (
-      <div>
-        <Box display={'flex'} alignItems={'center'} width={'100%'}>
-          <Box display={'flex'} alignItems={'center'}>
-            <label>Theme:</label>
-            <p className="control">
-              <span className="select">
-                <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
-                  {themes.map((lang) => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </p>
-          </Box>
-
-          <Box ml={2} display={'flex'} alignItems={'center'}>
-            <label>Font Size:</label>
-            <p className="control">
-              <span className="select">
-                <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
-                  {[14, 16, 18, 20, 24, 28, 32, 40].map((lang) => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </p>
-          </Box>
-        </Box>
-        <AceEditor
-          mode={this.state.mode}
-          theme={this.state.theme}
-          name="react-ace-code-editor"
-          width={1000}
-          onChange={this.onChange}
-          onValidate={this.onValidate}
-          value={this.state.value}
-          fontSize={this.state.fontSize}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: true,
-            showLineNumbers: true,
-            highlightGutterLine: true,
-            highlightSelectedWord: true,
-            highlightActiveLine: true,
-            showPrintMargin: true,
-            showGutter: true,
-            tabSize: 2
-          }}
-        />
-        <Box mt={2}>
-          <Button
-            sx={{ mr: 4 }}
-            variant={'contained'}
-            color={'primary'}
-            onClick={this.handleSubmit}>
-            Submit
-          </Button>
-          {!this.state.output.error && (
-            <TextField
-              multiline
-              rows={10}
-              placeholder={'Output'}
-              value={this.state.output.content}
-              sx={{
-                width: 700
-              }}
-            />
-          )}
-          {this.state.output.error && (
-            <TextField
-              multiline
-              rows={10}
-              placeholder={'Output'}
-              value={this.state.output.error}
-              error={true}
-              sx={{
-                width: 700,
-                '& .MuiInputBase-root': {
-                  color: 'red'
-                }
-              }}
-            />
-          )}
-        </Box>
-      </div>
-    );
-  }
+public class SolutionTest {
+    @Test
+    public void sampleTest() {
+\t\tassertEquals(Kata.isNice(new Integer[]{1,2,3,4,5}), true);
+\t\tassertEquals(Kata.isNice(new Integer[]{5,4,3,2,1}), true);
+\t\tassertEquals(Kata.isNice(new Integer[]{1,3,5,2}), false);
+\t\tassertEquals(Kata.isNice(new Integer[]{10,10,2,2,3}), false);
+\t\tassertEquals(Kata.isNice(new Integer[]{}), false);
+\t\tassertEquals(Kata.isNice(new Integer[]{1}), false);
+    }
 }
+`;
+
+export const CodeEditor = ({ onSubmit }) => {
+  const [value, setValue] = useState(defaultValue);
+  const [theme, setTheme] = useState('one_dark');
+  const [mode, setMode] = useState('java');
+  const [output, setOutput] = useState({
+    content: '',
+    error: ''
+  });
+  const [fontSize, setFontSize] = useState(14);
+
+  const handleChangeValue = (newValue) => {
+    setValue(newValue);
+  };
+
+  const handleThemeChange = (e) => {
+    setTheme(e.target.value);
+  };
+
+  const handleChangeFontSize = (e) => {
+    setFontSize(parseInt(e.target.value, 10));
+  };
+
+  const handleSubmit = async () => {
+    onSubmit(value);
+  };
+
+  const handleReset = () => {
+    setValue(defaultValue);
+  };
+
+  const handleUnlockSolution = () => {
+    console.log('test');
+  };
+
+  return (
+    <div>
+      {/*<Box display={'flex'} alignItems={'center'} width={'100%'}>*/}
+      {/*  <Box display={'flex'} alignItems={'center'}>*/}
+      {/*    <label>Theme:</label>*/}
+      {/*    <p className="control">*/}
+      {/*      <span className="select">*/}
+      {/*        <select name="Theme" onChange={this.setTheme} value={this.state.theme}>*/}
+      {/*          {themes.map((lang) => (*/}
+      {/*            <option key={lang} value={lang}>*/}
+      {/*              {lang}*/}
+      {/*            </option>*/}
+      {/*          ))}*/}
+      {/*        </select>*/}
+      {/*      </span>*/}
+      {/*    </p>*/}
+      {/*  </Box>*/}
+
+      {/*  <Box ml={2} display={'flex'} alignItems={'center'}>*/}
+      {/*    <label>Font Size:</label>*/}
+      {/*    <p className="control">*/}
+      {/*      <span className="select">*/}
+      {/*        <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>*/}
+      {/*          {[14, 16, 18, 20, 24, 28, 32, 40].map((lang) => (*/}
+      {/*            <option key={lang} value={lang}>*/}
+      {/*              {lang}*/}
+      {/*            </option>*/}
+      {/*          ))}*/}
+      {/*        </select>*/}
+      {/*      </span>*/}
+      {/*    </p>*/}
+      {/*  </Box>*/}
+      {/*</Box>*/}
+      <Box width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+        <Typography>Solution</Typography>
+      </Box>
+      <AceEditor
+        mode={mode}
+        theme={theme}
+        name="react-ace-code-editor"
+        width={1000}
+        onChange={handleChangeValue}
+        value={value}
+        fontSize={fontSize}
+        setOptions={{
+          enableBasicAutocompletion: true,
+          enableLiveAutocompletion: true,
+          enableSnippets: true,
+          showLineNumbers: true,
+          highlightGutterLine: true,
+          highlightSelectedWord: true,
+          highlightActiveLine: true,
+          showPrintMargin: true,
+          showGutter: true,
+          tabSize: 2
+        }}
+      />
+      <Box mt={3} width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+        <Typography>Sample Tests</Typography>
+      </Box>
+      <AceEditor
+        mode={'java'}
+        theme={'one_dark'}
+        name="react-ace-code-editor-sample-tests"
+        value={sampleTest}
+        width={'100%'}
+        height={350}
+        readOnly
+        fontSize={fontSize}
+        setOptions={{
+          enableBasicAutocompletion: true,
+          enableLiveAutocompletion: true,
+          enableSnippets: true,
+          showLineNumbers: true,
+          highlightGutterLine: true,
+          highlightSelectedWord: true,
+          highlightActiveLine: true,
+          showPrintMargin: true,
+          showGutter: true,
+          tabSize: 2
+        }}
+      />
+      <Box mt={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+        <Box display={'flex'} alignItems={'center'}>
+          <Button variant={'outlined'} color={'primary'} onClick={handleReset}>
+            <Lock />{' '}
+            <Typography sx={{ ml: 1 }} component={'span'}>
+              Unlocked Sample Solution
+            </Typography>
+          </Button>
+          <Button
+            sx={{ ml: 2 }}
+            variant={'outlined'}
+            color={'primary'}
+            onClick={handleUnlockSolution}>
+            <Typography component={'span'}>Reset</Typography>
+          </Button>
+        </Box>
+        <Button variant={'contained'} color={'primary'} onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Box>
+    </div>
+  );
+};
+
+const SampleTestContainer = styled(Box)({
+  backgroundColor: 'rgb(19,20,20)'
+});
+
+CodeEditor.propTypes = {
+  onSubmit: PropTypes.func
+};
