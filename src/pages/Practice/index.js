@@ -98,9 +98,14 @@ export const PracticePage = () => {
                 </Box>
               )}
               {output.message === 'Incorrect' && (
-                <Box display={'flex'} alignItems={'center'}>
-                  <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>
-                  <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
+                <Box>
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>
+                    <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
+                  </Box>
+                  <Typography>
+                    Expected: `&quot;{output.expected}`&quot; actual: `&quot;{output.actual}`&quot;
+                  </Typography>
                 </Box>
               )}
               {!output.actual && !output.error && (
