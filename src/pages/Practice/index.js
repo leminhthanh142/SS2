@@ -97,6 +97,9 @@ export const PracticePage = () => {
                   <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />
                 </Box>
               )}
+              {output.message === 'Incorrect' && (
+                <Typography sx={{ color: '#C73E1D' }}>All tests passed</Typography>
+              )}
               {!output.actual && !output.error && (
                 <Box display={'flex'} alignItems={'center'}>
                   <Typography>Calculating Result</Typography>
