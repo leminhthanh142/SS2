@@ -5,7 +5,7 @@ import { styled } from '@mui/styles';
 import { CodeEditor } from '../../components/modules/CodeEditor';
 import { QuestionCardDetails } from '../../components/QuestionCardDetails';
 import { customAxios } from '../../customAxios';
-import { CheckCircle } from '@mui/icons-material';
+import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 
 export const PracticePage = () => {
   const [viewMode, setViewMode] = useState('normal');
@@ -98,7 +98,10 @@ export const PracticePage = () => {
                 </Box>
               )}
               {output.message === 'Incorrect' && (
-                <Typography sx={{ color: '#C73E1D' }}>All tests passed</Typography>
+                <Box display={'flex'} alignItems={'center'}>
+                  <Typography sx={{ color: '#C73E1D' }}>All tests passed</Typography>
+                  <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
+                </Box>
               )}
               {!output.actual && !output.error && (
                 <Box display={'flex'} alignItems={'center'}>
