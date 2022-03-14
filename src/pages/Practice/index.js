@@ -93,13 +93,13 @@ export const PracticePage = () => {
             <Box height={'calc(100% - 65px)'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
               {output.message === 'Correct' && (
                 <Box display={'flex'} alignItems={'center'}>
-                  <Typography sx={{ color: '#4bb543' }}>All tests passed</Typography>
+                  <Typography sx={{ color: '#4bb543' }}>All tests passed!</Typography>
                   <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />
                 </Box>
               )}
               {output.message === 'Incorrect' && (
                 <Box display={'flex'} alignItems={'center'}>
-                  <Typography sx={{ color: '#C73E1D' }}>All tests passed</Typography>
+                  <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>
                   <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
                 </Box>
               )}
