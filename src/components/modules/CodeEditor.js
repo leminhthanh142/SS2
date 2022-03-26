@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/webpack-resolver';
 import { Box, FormControl, OutlinedInput, TextField, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
@@ -95,7 +96,9 @@ export const CodeEditor = ({
 
   const handleSubmit = async () => {
     onSubmit(value);
-    onChangeViewMode('output');
+    if (onChangeViewMode) {
+      onChangeViewMode('output');
+    }
   };
 
   const handleReset = () => {
