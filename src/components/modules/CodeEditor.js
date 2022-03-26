@@ -63,8 +63,8 @@ public class SolutionTest {
 }
 `;
 
-export const CodeEditor = ({ onSubmit, onChangeViewMode }) => {
-  const [value, setValue] = useState(defaultValue);
+export const CodeEditor = ({ onSubmit, onChangeViewMode, code, disableExampleTestScreen }) => {
+  const [value, setValue] = useState(code || defaultValue);
   const [theme, setTheme] = useState('one_dark');
   const [mode, setMode] = useState('java');
   const [output, setOutput] = useState({
@@ -131,14 +131,16 @@ export const CodeEditor = ({ onSubmit, onChangeViewMode }) => {
       {/*    </p>*/}
       {/*  </Box>*/}
       {/*</Box>*/}
-      <Box width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
-        <Typography>Solution</Typography>
-      </Box>
+      {!disableExampleTestScreen && (
+        <Box width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+          <Typography>Solution</Typography>
+        </Box>
+      )}
       <AceEditor
         mode={mode}
         theme={theme}
         name="react-ace-code-editor"
-        width={1000}
+        width={'100%'}
         onChange={handleChangeValue}
         value={value}
         fontSize={fontSize}
@@ -155,52 +157,58 @@ export const CodeEditor = ({ onSubmit, onChangeViewMode }) => {
           tabSize: 2
         }}
       />
-      <Box mt={3} width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
-        <Typography>Sample Tests</Typography>
-      </Box>
-      <AceEditor
-        mode={'java'}
-        theme={'one_dark'}
-        name="react-ace-code-editor-sample-tests"
-        value={sampleTest}
-        width={'100%'}
-        height={350}
-        readOnly
-        fontSize={fontSize}
-        setOptions={{
-          enableBasicAutocompletion: true,
-          enableLiveAutocompletion: true,
-          enableSnippets: true,
-          showLineNumbers: true,
-          highlightGutterLine: true,
-          highlightSelectedWord: true,
-          highlightActiveLine: true,
-          showPrintMargin: true,
-          showGutter: true,
-          tabSize: 2
-        }}
-      />
-      <Box mt={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-        <Box display={'flex'} alignItems={'center'}>
-          <Button variant={'outlined'} color={'primary'} onClick={handleUnlockSolution}>
-            <Lock />{' '}
-            <Typography sx={{ ml: 1 }} component={'span'}>
-              Unlocked Sample Solution
-            </Typography>
-          </Button>
-          <Button sx={{ ml: 2 }} variant={'outlined'} color={'primary'} onClick={handleReset}>
-            <Typography component={'span'}>Reset</Typography>
-          </Button>
-        </Box>
-        <Button variant={'contained'} color={'primary'} onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Box>
+      {!disableExampleTestScreen && (
+        <>
+          <Box mt={3} width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+            <Typography>Sample Tests</Typography>
+          </Box>
+          <AceEditor
+            mode={'java'}
+            theme={'one_dark'}
+            name="react-ace-code-editor-sample-tests"
+            value={sampleTest}
+            width={'100%'}
+            height={350}
+            readOnly
+            fontSize={fontSize}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: true,
+              showLineNumbers: true,
+              highlightGutterLine: true,
+              highlightSelectedWord: true,
+              highlightActiveLine: true,
+              showPrintMargin: true,
+              showGutter: true,
+              tabSize: 2
+            }}
+          />
+          <Box mt={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+            <Box display={'flex'} alignItems={'center'}>
+              <Button variant={'outlined'} color={'primary'} onClick={handleUnlockSolution}>
+                <Lock />{' '}
+                <Typography sx={{ ml: 1 }} component={'span'}>
+                  Unlocked Sample Solution
+                </Typography>
+              </Button>
+              <Button sx={{ ml: 2 }} variant={'outlined'} color={'primary'} onClick={handleReset}>
+                <Typography component={'span'}>Reset</Typography>
+              </Button>
+            </Box>
+            <Button variant={'contained'} color={'primary'} onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Box>
+        </>
+      )}
     </div>
   );
 };
 
 CodeEditor.propTypes = {
   onSubmit: PropTypes.func,
-  onChangeViewMode: PropTypes.func
+  onChangeViewMode: PropTypes.func,
+  code: PropTypes.string,
+  disableExampleTestScreen: PropTypes.bool
 };

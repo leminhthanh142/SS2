@@ -5,16 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { LocalOfferOutlined } from '@mui/icons-material';
 
-export const QuestionCard = ({
-  title,
-  description,
-  example,
-  note,
-  type,
-  id,
-  difficultTag,
-  relevantTags
-}) => {
+export const QuestionCard = ({ title, description, type, id, difficultTag, relevantTags }) => {
   return (
     <StyledCard elevation={0}>
       <Box mb={2} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
@@ -29,15 +20,6 @@ export const QuestionCard = ({
         </Link>
       </Box>
       <Typography>{description}</Typography>
-      {/*<StyledExample component={'pre'}>{example}</StyledExample>*/}
-      {/*{note && (*/}
-      {/*  <Typography>*/}
-      {/*    <Typography component={'span'} sx={{ fontWeight: 700 }}>*/}
-      {/*      Note:{' '}*/}
-      {/*    </Typography>*/}
-      {/*    {note}*/}
-      {/*  </Typography>*/}
-      {/*)}*/}
       <Box mt={3} display={'flex'} alignItems={'center'}>
         <LocalOfferOutlined />
         <Box ml={2}>
