@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HomeLayout } from '../../components/layout/home';
+import { CommonLayout } from '../../components/layout/common';
 import {
   Typography,
   styled,
@@ -8,8 +8,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  Button,
-  CircularProgress
+  Button
 } from '@mui/material';
 import './style.css';
 import { CodeEditor } from '../../components/modules/CodeEditor';
@@ -66,7 +65,7 @@ export const HomePage = () => {
   };
 
   return (
-    <HomeLayout>
+    <CommonLayout>
       <div>
         <Box mb={3}>
           <StyledHeading>Giới thiệu</StyledHeading>
@@ -275,7 +274,7 @@ export const HomePage = () => {
           </Link>
         </Box>
       </div>
-    </HomeLayout>
+    </CommonLayout>
   );
 };
 

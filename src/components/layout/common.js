@@ -3,7 +3,7 @@ import { styled } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { DashBoard } from '../modules/DashBoard';
 
-export const HomeLayout = ({ children }) => {
+export const CommonLayout = ({ children }) => {
   return (
     <>
       <DashBoard />
@@ -18,6 +18,6 @@ const Container = styled('main')({
   paddingTop: '65px'
 });
 
-HomeLayout.propTypes = {
+CommonLayout.propTypes = {
   children: PropTypes.node
 };
