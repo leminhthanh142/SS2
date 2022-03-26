@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HomeLayout } from '../../components/layout/home';
 import {
   Typography,
@@ -8,11 +8,14 @@ import {
   List,
   ListItem,
   ListItemText,
-  Button
+  Button,
+  CircularProgress
 } from '@mui/material';
 import './style.css';
 import { CodeEditor } from '../../components/modules/CodeEditor';
 import { Link } from 'react-router-dom';
+import { customAxios } from '../../customAxios';
+import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -31,19 +34,37 @@ const helloWorldBody = `
   } 
     
 **/
-public static void main(String[] args) {
-   /** Mọi dòng code của Java được kết thúc bằng ";"
-    Đây chính là câu lệnh giúp bạn in ra màn hình đó
+public class HelloWorld {
+  public static void main(String[] args) {
+    /** Mọi dòng code của Java được kết thúc bằng ";"
+        Đây chính là câu lệnh giúp bạn in ra màn hình đó
     
-    "Hello World!" : chính là nội dung mà bạn muốn hiển thị, dấu “ ” giúp cho Java biết đó chính là một chuỗi 
-    chứ không phải một thứ gì khó hiểu cả :D
+      "Hello World!" : chính là nội dung mà bạn muốn hiển thị, dấu “ ” giúp cho Java biết đó chính là một chuỗi 
+      chứ không phải một thứ gì khó hiểu cả :D
      
-   **/   
-   System.out.println("Hello World!");
-}  
+    **/   
+    System.out.println("Hello World!");
+  }  
+}
 `;
 
 export const HomePage = () => {
+  const [output, setOutput] = useState({
+    actual: '',
+    error: '',
+    message: '',
+    expected: ''
+  });
+
+  const handleSubmit = async (code) => {
+    const res = await customAxios.post('/test', code, {
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    });
+    setOutput(res.data);
+  };
+
   return (
     <HomeLayout>
       <div>
@@ -156,7 +177,7 @@ export const HomePage = () => {
               />
             </StyledListItem>
           </List>
-          <CodeEditor code={helloWorld} disableExampleTestScreen />
+          <CodeEditor code={helloWorld} disableExampleTestScreen readOnly />
           <br />
           <StyledContent>
             Sau đó click chuột phải vào file trên màn hình, chọn Run <code>fileName.main()</code> (
@@ -205,7 +226,39 @@ export const HomePage = () => {
             Chúng ta tạm thời bỏ qua <code>public class HelloWorld</code> nhé, mình sẽ giải thích ở
             bài sau. Bây giờ chúng ta sẽ tập trung vào :
           </StyledContent>
-          <CodeEditor code={helloWorldBody} disableExampleTestScreen />
+          <Box display="flex" alignItems="stretch">
+            <Box width={800}>
+              <CodeEditor
+                code={helloWorldBody}
+                disableExampleTestScreen
+                allowSubmitBtn
+                onSubmit={handleSubmit}
+              />
+            </Box>
+            {output && (
+              <Box height={500} width={'30%'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
+                {output.message === 'Correct' && (
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography sx={{ color: '#4bb543' }}>All tests passed!</Typography>
+                    <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />
+                  </Box>
+                )}
+                {output.message === 'Incorrect' && (
+                  <Box>
+                    <Box display={'flex'} alignItems={'center'}>
+                      <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>
+                      <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
+                    </Box>
+                    <Typography>
+                      Expected: `&quot;{output.expected}`&quot; actual: `&quot;{output.actual}
+                      `&quot;
+                    </Typography>
+                  </Box>
+                )}
+                {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}
+              </Box>
+            )}
+          </Box>
         </Box>
         <Box mb={3} mt={3}>
           <StyledHeading>Kết</StyledHeading>

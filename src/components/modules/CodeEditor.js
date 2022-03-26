@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import { Box, FormControl, OutlinedInput, TextField, Typography } from '@mui/material';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const themes = [
   'monokai',
@@ -63,7 +64,14 @@ public class SolutionTest {
 }
 `;
 
-export const CodeEditor = ({ onSubmit, onChangeViewMode, code, disableExampleTestScreen }) => {
+export const CodeEditor = ({
+  onSubmit,
+  onChangeViewMode,
+  code,
+  disableExampleTestScreen,
+  readOnly,
+  allowSubmitBtn
+}) => {
   const [value, setValue] = useState(code || defaultValue);
   const [theme, setTheme] = useState('one_dark');
   const [mode, setMode] = useState('java');
@@ -144,6 +152,7 @@ export const CodeEditor = ({ onSubmit, onChangeViewMode, code, disableExampleTes
         onChange={handleChangeValue}
         value={value}
         fontSize={fontSize}
+        readOnly={readOnly}
         setOptions={{
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
@@ -157,6 +166,12 @@ export const CodeEditor = ({ onSubmit, onChangeViewMode, code, disableExampleTes
           tabSize: 2
         }}
       />
+      {allowSubmitBtn && (
+        <Button variant={'contained'} color={'primary'} onClick={handleSubmit}>
+          <PlayArrowIcon sx={{ mr: 1 }} />
+          Run
+        </Button>
+      )}
       {!disableExampleTestScreen && (
         <>
           <Box mt={3} width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
@@ -210,5 +225,7 @@ CodeEditor.propTypes = {
   onSubmit: PropTypes.func,
   onChangeViewMode: PropTypes.func,
   code: PropTypes.string,
-  disableExampleTestScreen: PropTypes.bool
+  disableExampleTestScreen: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  allowSubmitBtn: PropTypes.bool
 };
