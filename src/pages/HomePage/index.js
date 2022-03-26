@@ -1,8 +1,18 @@
 import React from 'react';
 import { HomeLayout } from '../../components/layout/home';
-import { Typography, styled, Box, CardMedia, List, ListItem, ListItemText } from '@mui/material';
+import {
+  Typography,
+  styled,
+  Box,
+  CardMedia,
+  List,
+  ListItem,
+  ListItemText,
+  Button
+} from '@mui/material';
 import './style.css';
 import { CodeEditor } from '../../components/modules/CodeEditor';
+import { Link } from 'react-router-dom';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -197,12 +207,19 @@ export const HomePage = () => {
           </StyledContent>
           <CodeEditor code={helloWorldBody} disableExampleTestScreen />
         </Box>
-        <Box mb={15} mt={3}>
+        <Box mb={3} mt={3}>
           <StyledHeading>Kết</StyledHeading>
           <StyledContent>
             Wehooo!!! vậy là bạn đã chính thức bước vào thế giới Java đầy bí ẩn, mình có ông anh 96…
             à mà thôi!
           </StyledContent>
+        </Box>
+        <Box mb={15}>
+          <Link to={'/tutorials'}>
+            <Button variant={'contained'}>
+              <Typography fontSize={'18px'}>Khám phá thêm các bài giảng thôi nào</Typography>
+            </Button>
+          </Link>
         </Box>
       </div>
     </HomeLayout>
