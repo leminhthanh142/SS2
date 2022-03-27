@@ -258,6 +258,7 @@ export const Tutorial01 = () => {
                 </Box>
               )}
               {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}
+              {output.actual && <code>{output.actual}</code>}
             </Box>
           )}
         </Box>
