@@ -71,7 +71,8 @@ export const CodeEditor = ({
   code,
   disableExampleTestScreen,
   readOnly,
-  allowSubmitBtn
+  allowSubmitBtn,
+  height
 }) => {
   const [value, setValue] = useState(code || defaultValue);
   const [theme, setTheme] = useState('one_dark');
@@ -152,6 +153,7 @@ export const CodeEditor = ({
         theme={theme}
         name="react-ace-code-editor"
         width={'100%'}
+        height={height}
         onChange={handleChangeValue}
         value={value}
         fontSize={fontSize}
@@ -230,5 +232,6 @@ CodeEditor.propTypes = {
   code: PropTypes.string,
   disableExampleTestScreen: PropTypes.bool,
   readOnly: PropTypes.bool,
-  allowSubmitBtn: PropTypes.bool
+  allowSubmitBtn: PropTypes.bool,
+  height: PropTypes.number
 };

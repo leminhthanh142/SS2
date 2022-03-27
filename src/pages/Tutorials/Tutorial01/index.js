@@ -9,11 +9,12 @@ import {
   styled,
   Typography
 } from '@mui/material';
-import { CommonLayout } from '../../components/layout/common';
-import { CodeEditor } from '../../components/modules/CodeEditor';
+import { CommonLayout } from '../../../components/layout/common';
+import { CodeEditor } from '../../../components/modules/CodeEditor';
 import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { customAxios } from '../../customAxios';
+import { customAxios } from '../../../customAxios';
+import { useScrollToTop } from '../../../hooks/useScrollToTop';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -46,7 +47,8 @@ public class HelloWorld {
 }
 `;
 
-export const TutorialDetailPage = () => {
+export const Tutorial01 = () => {
+  useScrollToTop();
   const [output, setOutput] = useState({
     actual: '',
     error: '',
@@ -64,6 +66,9 @@ export const TutorialDetailPage = () => {
   };
   return (
     <CommonLayout>
+      <Box mb={5}>
+        <StyledHeading>[Java-Core-01]</StyledHeading>
+      </Box>
       <Box mb={3}>
         <StyledHeading>Cài đặt môi trường</StyledHeading>
         <StyledContent>Bạn đang thắc mắc môi trường là gì ư ?</StyledContent>
@@ -72,7 +77,11 @@ export const TutorialDetailPage = () => {
           bạn biết, khi đó bạn sẽ nhấn vào “Phụ đề” để có thể hiểu được nội dung. Và tương tự Java
           virtual machine (JVM) xuất hiện để phiên dịch cho mỗi OS mà bạn đang sử dụng.
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image1.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image1.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Và vì chúng ta là lập trình viên nên cần một bộ công cụ để có thể lập trình được Java.
           Ngoài ra trong quá trình cài, nó sẽ cài môi trường JRE (Java Runtime Environment, bao gồm
@@ -85,7 +94,11 @@ export const TutorialDetailPage = () => {
         <StyledContent>
           <a href="https://www.oracle.com/java/technologies/downloads/#java17">Download tại đây</a>
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image2.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image2.png'}
+          sx={{ mb: 2 }}
+        />
       </Box>
       <Box mb={3}>
         <StyledHeading>Integrated Development Environment (IDE)</StyledHeading>
@@ -98,7 +111,11 @@ export const TutorialDetailPage = () => {
         <StyledContent>
           <a href="https://www.jetbrains.com/idea/download/#section=windows">Download tại đây</a>
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image3.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image3.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Tại đây các bạn chọn hệ điều hành thích hợp và tiến hành cài đặt giống JDK và chọn next và
           accept với mọi mục để hưởng dịch vụ tốt nhất nhé !
@@ -110,16 +127,28 @@ export const TutorialDetailPage = () => {
           OKey, sau một loạt bước cài đặt, thì bạn bây giờ đã sẵn sàng để bắt đầu Lập trình Java. Mở{' '}
           <code>Intellij</code> lên nào, chọn <code>New project</code>.
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image4.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image4.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Bạn hãy chọn thẻ Java bên trái và nhấn Next 2 lần để tiến hành đặt tên cho Project của
           mình, ở đây mình sẽ đặt là “HelloWorld” và nhấn Finish để hoàn thành thui
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image5.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image5.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Bạn sẽ thấy cấu trúc project của mình, hãy cùng nhìn vào cấu trúc nha
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image6.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image6.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           <code>.idea</code>: đây là thư mục do chính Intellij tự tạo ra, các bạn có thể bỏ qua phần
           này nhé <code>src</code> : đây là nơi bạn để tất cả code trong này.
@@ -152,7 +181,11 @@ export const TutorialDetailPage = () => {
           Sau đó click chuột phải vào file trên màn hình, chọn Run <code>fileName.main()</code> (
           hoặc tổ hợp phím <code>Ctrl + Shift + F10</code> để chạy chương trình.
         </StyledContent>
-        <CardMedia component={'img'} image={'/images/home/image7.png'} sx={{ mb: 2 }} />
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial01/image7.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Congrats, với dòng chữ “Hello World!” được in ra màn hình, bạn đã hoàn thành ứng dụng đầu
           tiên cho riêng mình :D Bravo
@@ -229,11 +262,19 @@ export const TutorialDetailPage = () => {
           )}
         </Box>
       </Box>
-      <Box mb={3} mt={3}>
+      <Box mb={5} mt={3}>
         <StyledHeading>Kết</StyledHeading>
         <StyledContent>
           Wehooo!!! vậy là bạn đã chính thức bước vào thế giới Java đầy bí ẩn, mình có ông anh 96… à
           mà thôi!
+        </StyledContent>
+      </Box>
+      <Box mb={15}>
+        <StyledContent>
+          <Link to="/tutorials/2">[Java-Core-02] Comment, Biến, kiểu dữ liệu trong Java</Link>
+        </StyledContent>
+        <StyledContent>
+          <Link to="/tutorials/3">[Java-Core-03] Biểu thức, Statements ,Boolean expressions</Link>
         </StyledContent>
       </Box>
     </CommonLayout>
