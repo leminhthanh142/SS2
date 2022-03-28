@@ -19,7 +19,7 @@ export const TutorialsPage = () => {
             cách cài đặt môi trường và cài đặt công cụ lập trình.
           </StyledContent>
           <StyledContent>
-            <Link to="/tutorials/1">[Java-Core-01]</Link>
+            <Link to="/tutorials/1">[Java-Core-01] Giới thiệu Java căn bản</Link>
           </StyledContent>
           <StyledContent>
             <Link to="/tutorials/2">[Java-Core-02] Comment, Biến, kiểu dữ liệu trong Java</Link>
