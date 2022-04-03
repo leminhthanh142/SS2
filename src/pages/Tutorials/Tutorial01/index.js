@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  CardMedia,
-  List,
-  ListItem,
-  ListItemText,
-  styled,
-  Typography
-} from '@mui/material';
-import { CommonLayout } from '../../../components/layout/common';
+import { Box, CardMedia, List, ListItem, ListItemText, styled, Typography } from '@mui/material';
 import { CodeEditor } from '../../../components/modules/CodeEditor';
 import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { customAxios } from '../../../customAxios';
 import { useScrollToTop } from '../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../components/layout/common';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -70,6 +61,16 @@ export const Tutorial01 = () => {
         <StyledHeading>[Java-Core-01]</StyledHeading>
       </Box>
       <Box mb={3}>
+        <StyledHeading>Giới thiệu</StyledHeading>
+        <StyledContent>
+          Xin chào các bạn, chúng mình là team Special Subject 2 Spring 2021. Hôm nay chúng mình xin
+          giới thiệu tới các bạn khóa học Java căn bản. Mục tiêu giúp các bạn, dù với xuất phát điểm
+          nào thì cũng có thể nắm được ngôn ngữ này trong vòng x tuần.
+        </StyledContent>
+        <StyledContent>
+          Bài đầu tiên trong series này giới thiệu ngắn gọn với các bạn Java là gì, tập trung vào
+          cách cài đặt môi trường và cài đặt công cụ lập trình.
+        </StyledContent>
         <StyledHeading>Cài đặt môi trường</StyledHeading>
         <StyledContent>Bạn đang thắc mắc môi trường là gì ư ?</StyledContent>
         <StyledContent>

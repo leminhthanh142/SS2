@@ -9,12 +9,11 @@ import {
   styled,
   Typography
 } from '@mui/material';
-import { CommonLayout } from '../../../components/layout/common';
 import { CodeEditor } from '../../../components/modules/CodeEditor';
-import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { customAxios } from '../../../customAxios';
 import { useScrollToTop } from '../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../components/layout/common';
 
 const java02 = `public class JAV02 {
    public static void main(String[] args) {

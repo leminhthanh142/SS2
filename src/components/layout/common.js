@@ -2,11 +2,13 @@ import React from 'react';
 import { styled } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { DashBoard } from '../modules/DashBoard';
+import { Header } from '../Header';
 
 export const CommonLayout = ({ children }) => {
   return (
     <>
       <DashBoard />
+      <Header />
       <Container>{children}</Container>
     </>
   );

@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  CardMedia,
-  List,
-  ListItem,
-  ListItemText,
-  styled,
-  Typography
-} from '@mui/material';
-import { CommonLayout } from '../../../components/layout/common';
+import { Box, CardMedia, ListItem, styled, Typography } from '@mui/material';
 import { CodeEditor } from '../../../components/modules/CodeEditor';
-import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { customAxios } from '../../../customAxios';
 import { useScrollToTop } from '../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../components/layout/common';
 
 const myAge = `public class MyAge {
    public static void main(String[] args) {
