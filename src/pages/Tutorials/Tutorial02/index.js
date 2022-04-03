@@ -449,7 +449,7 @@ export const Tutorial02 = () => {
       </Box>
       <Box mb={15}>
         <StyledContent>
-          <Link to={'/tutorials/1'}>[Java-Core-01]</Link>
+          <Link to={'/tutorials/1'}>[Java-Core-01] Giới thiệu Java căn bản</Link>
         </StyledContent>
         <StyledContent>
           <Link to={'/tutorials/3'}>[Java-Core-03] Biểu thức, Statements ,Boolean expressions</Link>

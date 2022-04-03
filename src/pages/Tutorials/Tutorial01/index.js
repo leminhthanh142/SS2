@@ -33,7 +33,7 @@ public class HelloWorld {
       chứ không phải một thứ gì khó hiểu cả :D
      
     **/   
-    System.out.println("Hello World!");
+    System.out.println("...");
   }  
 }
 `;
@@ -48,7 +48,7 @@ export const Tutorial01 = () => {
   });
 
   const handleSubmit = async (code) => {
-    const res = await customAxios.post('/test', code, {
+    const res = await customAxios.post('/tutorials/helloworld', code, {
       headers: {
         'Content-Type': 'text/plain'
       }
@@ -58,7 +58,7 @@ export const Tutorial01 = () => {
   return (
     <CommonLayout>
       <Box mb={5}>
-        <StyledHeading>[Java-Core-01]</StyledHeading>
+        <StyledHeading>[Java-Core-01] Giới thiệu Java căn bản</StyledHeading>
       </Box>
       <Box mb={3}>
         <StyledHeading>Giới thiệu</StyledHeading>
@@ -227,7 +227,7 @@ export const Tutorial01 = () => {
         </List>
         <StyledContent>
           Chúng ta tạm thời bỏ qua <code>public class HelloWorld</code> nhé, mình sẽ giải thích ở
-          bài sau. Bây giờ chúng ta sẽ tập trung vào :
+          bài sau. Bạn hãy điền thử "Hello World" vào <code>...</code> và chạy thử nhé :D
         </StyledContent>
         <Box display="flex" alignItems="stretch">
           <Box width={800}>
