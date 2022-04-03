@@ -7,7 +7,7 @@ export const TagsType = {
 export const tutorials = [
   {
     id: 1,
-    title: '[Java-Core-01]',
+    title: '[Java-Core-01] Giới thiệu Java căn bản',
     path: '/tutorials/1',
     tags: [
       {
