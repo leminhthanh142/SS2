@@ -19,7 +19,8 @@ export const TutorialsPage = () => {
             <Box>
               <StyledHeading>Java Core</StyledHeading>
               <Typography sx={{ mb: 4 }}>
-                Một ngôn ngữ mạnh mẽ lâu đời và khó bị thay thế. Code 1 lần chạy mọi nơi!
+                Một ngôn ngữ mạnh mẽ lâu đời và khó bị thay thế. <br />
+                Code 1 lần chạy mọi nơi!
               </Typography>
               <Button variant={'contained'}>
                 <Link to={'/tutorials/1'}>

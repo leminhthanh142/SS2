@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Grid,
   Paper,
@@ -16,15 +16,38 @@ import {
 } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { customAxios } from '../customAxios';
+import { useFlash } from '../context/flashContext';
+
+const avatarStyle = { backgroundColor: '#1bbd7e' };
+const btnStyle = { margin: '8px 0' };
 
 export const SignInPage = () => {
-  const avatarStyle = { backgroundColor: '#1bbd7e' };
-  const btnStyle = { margin: '8px 0' };
+  const { setFlash } = useFlash();
   const navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    userName: '',
+    password: ''
+  });
 
-  const handleSignIn = () => {
-    navigate('/');
+  const handleChangeFormValues = (e) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value
+    });
   };
+
+  const handleSubmit = useCallback(async () => {
+    try {
+      await customAxios.post('/signin', {
+        ...formValues
+      });
+      setFlash({ type: 'success', message: 'Login successfully!' });
+      navigate('/sign-in');
+    } catch (err) {
+      setFlash({ type: 'error', message: 'Can not login right now, please try again later!' });
+    }
+  }, []);
 
   return (
     <StyledGrid>
@@ -40,7 +63,7 @@ export const SignInPage = () => {
             <FormLabel>
               <Typography>User Name</Typography>
             </FormLabel>
-            <TextField />
+            <TextField type="text" name={'userName'} onChange={handleChangeFormValues} />
           </FormControl>
         </Box>
         <Box mb={2}>
@@ -48,7 +71,7 @@ export const SignInPage = () => {
             <FormLabel>
               <Typography>Password</Typography>
             </FormLabel>
-            <TextField type="password" />
+            <TextField type="password" name={'password'} onChange={handleChangeFormValues} />
           </FormControl>
         </Box>
         <Box mb={2}>
@@ -59,8 +82,7 @@ export const SignInPage = () => {
         </Box>
         <Box mb={2}>
           <Button
-            onClick={handleSignIn}
-            type="submit"
+            onClick={handleSubmit}
             color="primary"
             variant="contained"
             style={btnStyle}

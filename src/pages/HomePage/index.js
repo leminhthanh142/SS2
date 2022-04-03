@@ -1,19 +1,36 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
-import { Box, Button, Typography, Stack, styled } from '@mui/material';
+import { Box, Button, Typography, Stack, styled, CardMedia, Card } from '@mui/material';
 import { CommonLayout } from '../../components/layout/common';
+import { Drawing } from '../../components/logos/Drawing';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 export const HomePage = () => {
   return (
     <CommonLayout>
       <Box mb={15}>
-        <Stack spacing={5} direction="row">
-          <Box>Logo</Box>
-          <Box>
-            <StyledHeading variant={'h1'}>Chào mừng mọi người quay lại với Code Camp</StyledHeading>
-          </Box>
-        </Stack>
+        <Wrapper>
+          <Stack spacing={5} direction="row" alignItems="center">
+            <Box>
+              <Drawing />
+            </Box>
+            <Box>
+              <StyledHeading variant={'h1'}>
+                Chào mừng mọi người quay lại với Code Camp
+              </StyledHeading>
+              <StyledContent variant={'body1'}>Blog đào tạo Java hảo hảo.</StyledContent>
+              <StyledCard direction="row" alignItems="center" spacing={2}>
+                <CheckCircleIcon />
+                <Typography>Version 1.0</Typography>
+              </StyledCard>
+            </Box>
+          </Stack>
+        </Wrapper>
+        <Wrapper>
+          <StyledHeading>Câu chuyện là</StyledHeading>
+        </Wrapper>
+        <CardMedia sx={{ width: 120 }} component="img" image="/images/avatar.png" />
         <Link to={'/tutorials'}>
           <Button variant={'contained'}>
             <Typography fontSize={'18px'}>Khám phá thêm các bài giảng thôi nào</Typography>
@@ -24,6 +41,25 @@ export const HomePage = () => {
   );
 };
 
+const Wrapper = styled(Box)(() => ({
+  paddingBottom: 120
+}));
+
+const StyledCard = styled(Stack)(() => ({
+  borderRadius: '10px',
+  marginTop: 24,
+  padding: '25px',
+  color: '#ffffff',
+  background: 'rgb(106,106,107)'
+}));
+
+const StyledContent = styled(Typography)(() => ({
+  fontSize: 18,
+  fontStyle: 'italic',
+  color: '#adadad',
+  marginTop: 16
+}));
+
 const StyledHeading = styled(Typography)(() => ({
-  fontSize: 56
+  fontSize: 46
 }));
