@@ -39,7 +39,7 @@ export const SignInPage = () => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      await customAxios.post('/signin', {
+      await customAxios.post('/auth/signin', {
         ...formValues
       });
       setFlash({ type: 'success', message: 'Login successfully!' });

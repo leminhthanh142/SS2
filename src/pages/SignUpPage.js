@@ -38,7 +38,7 @@ export const SignUpPage = () => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      await customAxios.post('/signup', {
+      await customAxios.post('/auth/signup', {
         ...formValues
       });
       setFlash({ type: 'success', message: 'Sign up successfully!' });
