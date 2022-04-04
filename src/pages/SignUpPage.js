@@ -23,7 +23,7 @@ export const SignUpPage = () => {
   const { setFlash } = useFlash();
   const [formValues, setFormValues] = useState({
     email: '',
-    userName: '',
+    username: '',
     password: ''
   });
 
@@ -46,7 +46,7 @@ export const SignUpPage = () => {
     } catch (err) {
       setFlash({ type: 'error', message: 'Can not register right now, please try again later!' });
     }
-  }, []);
+  }, [formValues]);
 
   return (
     <StyledGrid>
@@ -67,7 +67,7 @@ export const SignUpPage = () => {
             <TextField
               fullWidth
               label="Name"
-              name={'userName'}
+              name={'username'}
               onChange={handleChangeFormValues}
               placeholder="Enter your name"
             />
@@ -76,7 +76,7 @@ export const SignUpPage = () => {
             <TextField
               fullWidth
               label="Email"
-              name={'emai'}
+              name={'email'}
               onChange={handleChangeFormValues}
               placeholder="Enter your email"
             />

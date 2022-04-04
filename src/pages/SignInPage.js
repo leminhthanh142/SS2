@@ -26,7 +26,7 @@ export const SignInPage = () => {
   const { setFlash } = useFlash();
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
-    userName: '',
+    username: '',
     password: ''
   });
 
@@ -38,6 +38,7 @@ export const SignInPage = () => {
   };
 
   const handleSubmit = useCallback(async () => {
+    console.log(formValues);
     try {
       await customAxios.post('/auth/signin', {
         ...formValues
@@ -47,7 +48,7 @@ export const SignInPage = () => {
     } catch (err) {
       setFlash({ type: 'error', message: 'Can not login right now, please try again later!' });
     }
-  }, []);
+  }, [formValues]);
 
   return (
     <StyledGrid>
@@ -63,7 +64,7 @@ export const SignInPage = () => {
             <FormLabel>
               <Typography>User Name</Typography>
             </FormLabel>
-            <TextField type="text" name={'userName'} onChange={handleChangeFormValues} />
+            <TextField type="text" name={'username'} onChange={handleChangeFormValues} />
           </FormControl>
         </Box>
         <Box mb={2}>
