@@ -28,14 +28,12 @@ export const HomePage = () => {
           </Stack>
         </Wrapper>
         <Wrapper>
-          <StyledHeading>Câu chuyện là</StyledHeading>
+          <Link to={'/tutorials'}>
+            <Button variant={'contained'}>
+              <Typography fontSize={'18px'}>Khám phá thêm các bài giảng thôi nào</Typography>
+            </Button>
+          </Link>
         </Wrapper>
-        <CardMedia sx={{ width: 120 }} component="img" image="/images/avatar.png" />
-        <Link to={'/tutorials'}>
-          <Button variant={'contained'}>
-            <Typography fontSize={'18px'}>Khám phá thêm các bài giảng thôi nào</Typography>
-          </Button>
-        </Link>
       </Box>
     </CommonLayout>
   );
