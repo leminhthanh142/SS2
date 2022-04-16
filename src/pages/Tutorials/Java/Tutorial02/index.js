@@ -9,11 +9,11 @@ import {
   styled,
   Typography
 } from '@mui/material';
-import { CodeEditor } from '../../../components/modules/CodeEditor';
+import { CodeEditor } from '../../../../components/modules/CodeEditor';
 import { Link } from 'react-router-dom';
-import { customAxios } from '../../../customAxios';
-import { useScrollToTop } from '../../../hooks/useScrollToTop';
-import { CommonLayout } from '../../../components/layout/common';
+import { customAxios } from '../../../../customAxios';
+import { useScrollToTop } from '../../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../../components/layout/common';
 
 const java02 = `public class JAV02 {
    public static void main(String[] args) {
@@ -24,7 +24,7 @@ const java02 = `public class JAV02 {
 
 `;
 
-export const Tutorial02 = () => {
+export const JavaTutorial02 = () => {
   useScrollToTop();
   const [output, setOutput] = useState({
     actual: '',

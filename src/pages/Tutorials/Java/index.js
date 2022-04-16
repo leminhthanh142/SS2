@@ -1,13 +1,13 @@
 import React from 'react';
 import { Box, Button, styled, Typography, Stack, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { JavaLogo } from '../../components/JavaLogo';
-import { CommonLayout } from '../../components/layout/common';
-import { TutorialsList } from '../../components/TutorialsList';
-import { tutorials } from '../../data/tutorials';
+import { JavaLogo } from '../../../components/JavaLogo';
+import { CommonLayout } from '../../../components/layout/common';
+import { TutorialsList } from '../../../components/TutorialsList';
+import { javaTutorials } from '../../../data/tutorials';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
-export const TutorialsPage = () => {
+export const JavaTutorialsPage = () => {
   return (
     <CommonLayout>
       <div>
@@ -33,7 +33,7 @@ export const TutorialsPage = () => {
             </Box>
           </Stack>
           <StyledHeading>Bắt đầu nào</StyledHeading>
-          <TutorialsList tutorials={tutorials} />
+          <TutorialsList tutorials={javaTutorials} />
         </Box>
       </div>
     </CommonLayout>
@@ -41,8 +41,19 @@ export const TutorialsPage = () => {
 };
 
 const StyledPaper = styled(Paper)(() => ({
+  transition: 'all 0.3s',
   padding: '20px 45px',
-  background: 'rgb(38, 39,41)'
+  border: '1px solid',
+  borderColor: '#e6dad8',
+  borderRadius: '10px',
+  boxShadow: 'none',
+  cursor: 'pointer',
+  maxWidth: 542,
+  '&:hover': {
+    borderColor: '#ffffff',
+    boxShadow: '-5px 15px 25px 12px rgba(255,146,146,0.1)',
+    transform: 'translateY(-10px)'
+  }
 }));
 
 const StyledHeading = styled(Typography)(() => ({

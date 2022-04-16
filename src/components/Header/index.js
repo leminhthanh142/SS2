@@ -1,14 +1,19 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, styled } from '@mui/material';
+import { AppBar, Toolbar, Button, Stack, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
     <AppBar position="sticky" sx={{ background: 'rgb(34, 34, 34)', boxShadow: 'none' }}>
       <StyledToolbar>
-        <Button color="inherit">
-          <Link to={'/sign-in'}>Login</Link>
-        </Button>
+        <Stack direction={'row'} spacing={3}>
+          <Button color="inherit">
+            <Link to={'/courses'}>Courses</Link>
+          </Button>
+          <Button color="inherit">
+            <Link to={'/sign-in'}>Login</Link>
+          </Button>
+        </Stack>
       </StyledToolbar>
     </AppBar>
   );

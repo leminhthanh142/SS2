@@ -32,7 +32,7 @@ const StyledStack = styled(Stack)(() => ({
   alignItems: 'center',
   transition: 'all 0.2s ease-in-out',
   '&:hover': {
-    background: 'rgb(46,47,49)'
+    background: 'rgb(243,243,243)'
   }
 }));
 
@@ -56,8 +56,7 @@ const StyledTag = styled(Chip)(({ theme, type }) => {
 });
 
 const StyledContent = styled(Typography)(() => ({
-  fontSize: 16,
-  color: '#ffffff'
+  fontSize: 16
 }));
 
 Tutorial.propTypes = {

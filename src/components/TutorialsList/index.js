@@ -11,10 +11,8 @@ export const TutorialsList = ({ tutorials }) => {
         <StyledPaper>
           <Stack spacing={1}>
             <Stack spacing={1} direction="row">
-              <Lightbulb sx={{ color: '#ffffff' }} />
-              <Typography sx={{ color: '#ffffff' }} component="span">
-                Bài học
-              </Typography>
+              <Lightbulb />
+              <Typography component="span">Bài học</Typography>
             </Stack>
             {tutorials.map((tutorial) => (
               <Tutorial key={tutorial.id} tutorial={tutorial} />
@@ -22,7 +20,7 @@ export const TutorialsList = ({ tutorials }) => {
           </Stack>
         </StyledPaper>
         <StyledPaper padding={'20px 45px'}>
-          <Typography sx={{ color: '#ffffff' }}>✌️ Chúc các bạn học tập hiệu quả!</Typography>
+          <Typography>✌️ Chúc các bạn học tập hiệu quả!</Typography>
         </StyledPaper>
       </Stack>
     </Box>
@@ -31,7 +29,11 @@ export const TutorialsList = ({ tutorials }) => {
 
 const StyledPaper = styled(Paper)(({ padding }) => ({
   padding: padding ? padding : '45px',
-  background: 'rgb(55,56,58)'
+  transition: 'all 0.3s',
+  border: '1px solid',
+  borderColor: '#e6dad8',
+  borderRadius: '10px',
+  boxShadow: 'none'
 }));
 
 TutorialsList.propTypes = {

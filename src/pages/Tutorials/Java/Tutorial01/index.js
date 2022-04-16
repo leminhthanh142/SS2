@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, CardMedia, List, ListItem, ListItemText, styled, Typography } from '@mui/material';
-import { CodeEditor } from '../../../components/modules/CodeEditor';
+import { CodeEditor } from '../../../../components/modules/CodeEditor';
 import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { customAxios } from '../../../customAxios';
-import { useScrollToTop } from '../../../hooks/useScrollToTop';
-import { CommonLayout } from '../../../components/layout/common';
+import { customAxios } from '../../../../customAxios';
+import { useScrollToTop } from '../../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../../components/layout/common';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class HelloWorld {
 }
 `;
 
-export const Tutorial01 = () => {
+export const JavaTutorial01 = () => {
   useScrollToTop();
   const [output, setOutput] = useState({
     actual: '',

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box, CardMedia, ListItem, styled, Typography } from '@mui/material';
-import { CodeEditor } from '../../../components/modules/CodeEditor';
+import { CodeEditor } from '../../../../components/modules/CodeEditor';
 import { Link } from 'react-router-dom';
-import { customAxios } from '../../../customAxios';
-import { useScrollToTop } from '../../../hooks/useScrollToTop';
-import { CommonLayout } from '../../../components/layout/common';
+import { customAxios } from '../../../../customAxios';
+import { useScrollToTop } from '../../../../hooks/useScrollToTop';
+import { CommonLayout } from '../../../../components/layout/common';
 
 const myAge = `public class MyAge {
    public static void main(String[] args) {
@@ -15,7 +15,7 @@ const myAge = `public class MyAge {
 
 `;
 
-export const Tutorial03 = () => {
+export const JavaTutorial03 = () => {
   useScrollToTop();
   const [output, setOutput] = useState({
     actual: '',

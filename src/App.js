@@ -4,13 +4,17 @@ import { HomePage } from './pages/HomePage';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { PracticePage } from './pages/Practice';
-import { TutorialsPage } from './pages/Tutorials';
-import { Tutorial01 } from './pages/Tutorials/Tutorial01';
-import { Tutorial02 } from './pages/Tutorials/Tutorial02';
-import { Tutorial03 } from './pages/Tutorials/Tutorial03';
 import { FlashContextProvider } from './context/flashContext';
 import { Flash } from './components/Flash';
 import { AuthContextProvider } from './context/authContext';
+import { Course } from './pages/Course';
+import { JavaTutorialsPage } from './pages/Tutorials/Java';
+import { JavaTutorial01 } from './pages/Tutorials/Java/Tutorial01';
+import { JavaTutorial02 } from './pages/Tutorials/Java/Tutorial02';
+import { JavaTutorial03 } from './pages/Tutorials/Java/Tutorial03';
+import { JsTutorialsPage } from './pages/Tutorials/JS';
+import { ReactTutorialsPage } from './pages/Tutorials/React';
+import { JsTutorial01 } from './pages/Tutorials/JS/Tutorial01';
 
 function App() {
   return (
@@ -22,10 +26,14 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/tutorials" element={<TutorialsPage />} />
-            <Route path="/tutorials/1" element={<Tutorial01 />} />
-            <Route path="/tutorials/2" element={<Tutorial02 />} />
-            <Route path="/tutorials/3" element={<Tutorial03 />} />
+            <Route path="/java-tutorials" element={<JavaTutorialsPage />} />
+            <Route path="/js-tutorials" element={<JsTutorialsPage />} />
+            <Route path="/js-tutorials/1" element={<JsTutorial01 />} />
+            <Route path="/react-tutorials" element={<ReactTutorialsPage />} />
+            <Route path="/courses" element={<Course />} />
+            <Route path="/java-tutorials/1" element={<JavaTutorial01 />} />
+            <Route path="/java-tutorials/2" element={<JavaTutorial02 />} />
+            <Route path="/java-tutorials/3" element={<JavaTutorial03 />} />
             <Route path="/practice/:id" element={<PracticePage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
