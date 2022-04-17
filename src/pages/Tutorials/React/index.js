@@ -22,7 +22,7 @@ export const ReactTutorialsPage = () => {
             </StyledPaper>
             <Box>
               <StyledHeading>React Base</StyledHeading>
-              <Typography sx={{ mb: 4 }}>React be4 hoes</Typography>
+              <Typography sx={{ mb: 4 }}>Why React?? Bruhh</Typography>
               <Button variant={'contained'}>
                 <Link to={'/react-tutorials/1'}>
                   <Stack spacing={1} direction="row" alignItems="center">
@@ -44,12 +44,10 @@ export const ReactTutorialsPage = () => {
 const StyledPaper = styled(Paper)(() => ({
   transition: 'all 0.3s',
   padding: '20px 45px',
-  border: '1px solid',
-  borderColor: '#e6dad8',
   borderRadius: '10px',
-  boxShadow: 'none',
   cursor: 'pointer',
   maxWidth: 542,
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px',
   '&:hover': {
     borderColor: '#ffffff',
     boxShadow: '-5px 15px 25px 12px rgba(255,146,146,0.1)',

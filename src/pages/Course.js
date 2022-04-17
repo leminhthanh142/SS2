@@ -1,32 +1,31 @@
 import { Box, Card, CardMedia, styled, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { CommonLayout } from '../components/layout/common';
+import { JavaLogo } from '../components/JavaLogo';
 
 export const Course = () => {
   const navigate = useNavigate();
   return (
     <CommonLayout>
       <Typography variant={'h2'}>Các Khóa Học Cơ Bản</Typography>
-      <Stack direction={'row'} spacing={4} mt={5}>
+      <Stack direction={'row'} spacing={5} mt={5}>
         <StyledCard onClick={() => navigate('/js-tutorials')}>
-          <CardMedia
-            component={'img'}
-            image={'https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_960_720.png'}
-          />
+          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
+            <CardMedia component={'img'} image={'/images/logo/js-logo.webp'} />
+            <StyledTypography>JS Basic</StyledTypography>
+          </StyledStack>
         </StyledCard>
         <StyledCard onClick={() => navigate('/react-tutorials')}>
-          <CardMedia
-            component={'img'}
-            image={
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png'
-            }
-          />
+          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
+            <CardMedia component={'img'} image={'/images/logo/react.png'} />
+            <StyledTypography>React Basic</StyledTypography>
+          </StyledStack>
         </StyledCard>
         <StyledCard onClick={() => navigate('/java-tutorials')}>
-          <CardMedia
-            component={'img'}
-            image={'https://logoeps.com/wp-content/uploads/2011/06/java-logo-vector.png'}
-          />
+          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
+            <JavaLogo />
+            <StyledTypography>Java Basic</StyledTypography>
+          </StyledStack>
         </StyledCard>
       </Stack>
     </CommonLayout>
@@ -36,15 +35,30 @@ export const Course = () => {
 const StyledCard = styled(Card)({
   transition: 'all 0.3s',
   padding: '30px',
-  border: '1px solid',
-  borderColor: '#e6dad8',
   borderRadius: '10px',
-  boxShadow: 'none',
-  maxWidth: 200,
+  maxWidth: 240,
   cursor: 'pointer',
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px',
   '&:hover': {
     borderColor: '#ffffff',
     boxShadow: '-5px 15px 25px 12px rgba(255,146,146,0.1)',
     transform: 'translateY(-10px)'
+  }
+});
+
+const StyledTypography = styled(Typography)({
+  fontSize: 20,
+  fontStyle: 'italic',
+  letterSpacing: 1,
+  marginTop: 12
+});
+
+const StyledStack = styled(Stack)({
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  height: '100%',
+  '& svg': {
+    maxWidth: 180,
+    maxHeight: 180
   }
 });

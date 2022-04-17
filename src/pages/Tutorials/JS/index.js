@@ -22,7 +22,7 @@ export const JsTutorialsPage = () => {
             </StyledPaper>
             <Box>
               <StyledHeading>JS Base</StyledHeading>
-              <Typography sx={{ mb: 4 }}>JS be4 hoes</Typography>
+              <Typography sx={{ mb: 4 }}>JS is easy :))</Typography>
               <Button variant={'contained'}>
                 <Link to={'/js-tutorials/1'}>
                   <Stack spacing={1} direction="row" alignItems="center">
@@ -44,14 +44,11 @@ export const JsTutorialsPage = () => {
 const StyledPaper = styled(Paper)(() => ({
   transition: 'all 0.3s',
   padding: '20px 45px',
-  border: '1px solid',
-  borderColor: '#e6dad8',
   borderRadius: '10px',
-  boxShadow: 'none',
   cursor: 'pointer',
   maxWidth: 542,
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px',
   '&:hover': {
-    borderColor: '#ffffff',
     boxShadow: '-5px 15px 25px 12px rgba(255,146,146,0.1)',
     transform: 'translateY(-10px)'
   }

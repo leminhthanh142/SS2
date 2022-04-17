@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { Box, CardMedia, List, ListItem, ListItemText, styled, Typography } from '@mui/material';
+import {
+  Box,
+  CardMedia,
+  List,
+  ListItem,
+  ListItemText,
+  Stack,
+  styled,
+  Typography
+} from '@mui/material';
 import { CodeEditor } from '../../../../components/modules/CodeEditor';
 import { CancelOutlined, CheckCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { customAxios } from '../../../../customAxios';
 import { useScrollToTop } from '../../../../hooks/useScrollToTop';
 import { CommonLayout } from '../../../../components/layout/common';
+import { ReplitJava } from '../../../../components/ReplitJava';
+import { useTutorials } from '../../../../hooks/useTutorials';
+import { javaTutorials } from '../../../../data/tutorials';
+import { TutorialLink } from '../../../../components/TutorialLink';
 
 const helloWorld = `public class HelloWorld {
     public static void main(String[] args) {
@@ -39,7 +52,7 @@ public class HelloWorld {
 `;
 
 export const JavaTutorial01 = () => {
-  useScrollToTop();
+  const { getTutorials } = useTutorials();
   const [output, setOutput] = useState({
     actual: '',
     error: '',
@@ -55,6 +68,7 @@ export const JavaTutorial01 = () => {
     });
     setOutput(res.data);
   };
+
   return (
     <CommonLayout>
       <Box mb={5}>
@@ -229,40 +243,43 @@ export const JavaTutorial01 = () => {
           Chúng ta tạm thời bỏ qua <code>public class HelloWorld</code> nhé, mình sẽ giải thích ở
           bài sau. Bạn hãy điền thử "Hello World" vào <code>...</code> và chạy thử nhé :D
         </StyledContent>
-        <Box display="flex" alignItems="stretch">
-          <Box width={800}>
-            <CodeEditor
-              code={helloWorldBody}
-              disableExampleTestScreen
-              allowSubmitBtn
-              onSubmit={handleSubmit}
-            />
-          </Box>
-          {output && (
-            <Box height={500} width={'30%'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
-              {output.message === 'Correct' && (
-                <Box display={'flex'} alignItems={'center'}>
-                  <Typography sx={{ color: '#4bb543' }}>All tests passed!</Typography>
-                  <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />
-                </Box>
-              )}
-              {output.message === 'Incorrect' && (
-                <Box>
-                  <Box display={'flex'} alignItems={'center'}>
-                    <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>
-                    <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
-                  </Box>
-                  <Typography>
-                    Expected: `&quot;{output.expected}`&quot; actual: `&quot;{output.actual}
-                    `&quot;
-                  </Typography>
-                </Box>
-              )}
-              {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}
-              {output.actual && <code>{output.actual}</code>}
-            </Box>
-          )}
-        </Box>
+        <ReplitJava />
+
+        {/*<Box display="flex" alignItems="stretch">*/}
+        {/*  <Box width={800}>*/}
+        {/*    /!*<CodeEditor*!/*/}
+        {/*    /!*  code={helloWorldBody}*!/*/}
+        {/*    /!*  disableExampleTestScreen*!/*/}
+        {/*    /!*  allowSubmitBtn*!/*/}
+        {/*    /!*  onSubmit={handleSubmit}*!/*/}
+        {/*    /!*/
+        /*/}
+        {/*  </Box>*/}
+        {/*  {output && (*/}
+        {/*    <Box height={500} width={'30%'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>*/}
+        {/*      {output.message === 'Correct' && (*/}
+        {/*        <Box display={'flex'} alignItems={'center'}>*/}
+        {/*          <Typography sx={{ color: '#4bb543' }}>All tests passed!</Typography>*/}
+        {/*          <CheckCircle sx={{ ml: 2, color: '#4bb543' }} />*/}
+        {/*        </Box>*/}
+        {/*      )}*/}
+        {/*      {output.message === 'Incorrect' && (*/}
+        {/*        <Box>*/}
+        {/*          <Box display={'flex'} alignItems={'center'}>*/}
+        {/*            <Typography sx={{ color: '#C73E1D' }}>Test failed!</Typography>*/}
+        {/*            <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />*/}
+        {/*          </Box>*/}
+        {/*          <Typography>*/}
+        {/*            Expected: `&quot;{output.expected}`&quot; actual: `&quot;{output.actual}*/}
+        {/*            `&quot;*/}
+        {/*          </Typography>*/}
+        {/*        </Box>*/}
+        {/*      )}*/}
+        {/*      {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}*/}
+        {/*      {output.actual && <code>{output.actual}</code>}*/}
+        {/*    </Box>*/}
+        {/*  )}*/}
+        {/*</Box>*/}
       </Box>
       <Box mb={5} mt={3}>
         <StyledHeading>Kết</StyledHeading>
@@ -271,13 +288,12 @@ export const JavaTutorial01 = () => {
           mà thôi!
         </StyledContent>
       </Box>
-      <Box mb={15}>
-        <StyledContent>
-          <Link to="/tutorials/2">[Java-Core-02] Comment, Biến, kiểu dữ liệu trong Java</Link>
-        </StyledContent>
-        <StyledContent>
-          <Link to="/tutorials/3">[Java-Core-03] Biểu thức, Statements ,Boolean expressions</Link>
-        </StyledContent>
+      <Box>
+        <Stack spacing={2}>
+          {getTutorials(javaTutorials, 1).map((tutorial) => (
+            <TutorialLink key={tutorial.id} path={tutorial.path} title={tutorial.title} />
+          ))}
+        </Stack>
       </Box>
     </CommonLayout>
   );

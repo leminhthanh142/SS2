@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 export const TutorialsList = ({ tutorials }) => {
   return (
     <Box>
-      <Stack spacing={3}>
-        <StyledPaper>
+      <Stack spacing={5}>
+        <StyledPaper elevation={0}>
           <Stack spacing={1}>
             <Stack spacing={1} direction="row">
               <Lightbulb />
@@ -19,7 +19,7 @@ export const TutorialsList = ({ tutorials }) => {
             ))}
           </Stack>
         </StyledPaper>
-        <StyledPaper padding={'20px 45px'}>
+        <StyledPaper elevation={0} padding={'20px 45px'}>
           <Typography>✌️ Chúc các bạn học tập hiệu quả!</Typography>
         </StyledPaper>
       </Stack>
@@ -30,10 +30,13 @@ export const TutorialsList = ({ tutorials }) => {
 const StyledPaper = styled(Paper)(({ padding }) => ({
   padding: padding ? padding : '45px',
   transition: 'all 0.3s',
-  border: '1px solid',
-  borderColor: '#e6dad8',
   borderRadius: '10px',
-  boxShadow: 'none'
+  background: 'rgb(255, 255, 255)',
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px',
+  '&:hover': {
+    boxShadow: '-5px 15px 25px 12px rgba(255,146,146,0.1)',
+    transform: 'translateY(-10px)'
+  }
 }));
 
 TutorialsList.propTypes = {

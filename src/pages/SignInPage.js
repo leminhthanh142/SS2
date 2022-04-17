@@ -38,7 +38,6 @@ export const SignInPage = () => {
   };
 
   const handleSubmit = useCallback(async () => {
-    console.log(formValues);
     try {
       await customAxios.post('/auth/signin', {
         ...formValues

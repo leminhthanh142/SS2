@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 import { Link } from 'react-router-dom';
 import { Box, Button, Typography, Stack, styled, CardMedia, Card } from '@mui/material';
 import { CommonLayout } from '../../components/layout/common';

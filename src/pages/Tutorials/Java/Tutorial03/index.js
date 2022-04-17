@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Box, CardMedia, ListItem, styled, Typography } from '@mui/material';
+import React from 'react';
+import { Box, CardMedia, ListItem, Stack, styled, Typography } from '@mui/material';
 import { CodeEditor } from '../../../../components/modules/CodeEditor';
 import { Link } from 'react-router-dom';
-import { customAxios } from '../../../../customAxios';
 import { useScrollToTop } from '../../../../hooks/useScrollToTop';
 import { CommonLayout } from '../../../../components/layout/common';
+import { javaTutorials } from '../../../../data/tutorials';
+import { useTutorials } from '../../../../hooks/useTutorials';
+import { TutorialLink } from '../../../../components/TutorialLink';
 
 const myAge = `public class MyAge {
    public static void main(String[] args) {
@@ -16,22 +18,8 @@ const myAge = `public class MyAge {
 `;
 
 export const JavaTutorial03 = () => {
-  useScrollToTop();
-  const [output, setOutput] = useState({
-    actual: '',
-    error: '',
-    message: '',
-    expected: ''
-  });
+  const { getTutorials } = useTutorials();
 
-  const handleSubmit = async (code) => {
-    const res = await customAxios.post('/test', code, {
-      headers: {
-        'Content-Type': 'text/plain'
-      }
-    });
-    setOutput(res.data);
-  };
   return (
     <CommonLayout>
       <Box mb={5}>
@@ -134,13 +122,12 @@ export const JavaTutorial03 = () => {
           sx={{ mb: 2 }}
         />
       </Box>
-      <Box mb={15}>
-        <StyledContent>
-          <Link to={'/tutorials/1'}>[Java-Core-01] Giới thiệu Java căn bản</Link>
-        </StyledContent>
-        <StyledContent>
-          <Link to={'/tutorials/3'}>[Java-Core-02] Comment, Biến, kiểu dữ liệu trong Java</Link>
-        </StyledContent>
+      <Box>
+        <Stack spacing={2}>
+          {getTutorials(javaTutorials, 3).map((tutorial) => (
+            <TutorialLink key={tutorial.id} path={tutorial.path} title={tutorial.title} />
+          ))}
+        </Stack>
       </Box>
     </CommonLayout>
   );

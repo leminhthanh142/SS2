@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Stack,
   styled,
   Typography
 } from '@mui/material';
@@ -14,6 +15,9 @@ import { Link } from 'react-router-dom';
 import { customAxios } from '../../../../customAxios';
 import { useScrollToTop } from '../../../../hooks/useScrollToTop';
 import { CommonLayout } from '../../../../components/layout/common';
+import { javaTutorials } from '../../../../data/tutorials';
+import { useTutorials } from '../../../../hooks/useTutorials';
+import { TutorialLink } from '../../../../components/TutorialLink';
 
 const java02 = `public class JAV02 {
    public static void main(String[] args) {
@@ -25,7 +29,7 @@ const java02 = `public class JAV02 {
 `;
 
 export const JavaTutorial02 = () => {
-  useScrollToTop();
+  const { getTutorials } = useTutorials();
   const [output, setOutput] = useState({
     actual: '',
     error: '',
@@ -447,13 +451,12 @@ export const JavaTutorial02 = () => {
           cùng làm một số bài tập nha :)))
         </StyledContent>
       </Box>
-      <Box mb={15}>
-        <StyledContent>
-          <Link to={'/tutorials/1'}>[Java-Core-01] Giới thiệu Java căn bản</Link>
-        </StyledContent>
-        <StyledContent>
-          <Link to={'/tutorials/3'}>[Java-Core-03] Biểu thức, Statements ,Boolean expressions</Link>
-        </StyledContent>
+      <Box>
+        <Stack spacing={2}>
+          {getTutorials(javaTutorials, 2).map((tutorial) => (
+            <TutorialLink key={tutorial.id} path={tutorial.path} title={tutorial.title} />
+          ))}
+        </Stack>
       </Box>
     </CommonLayout>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
-import { DashBoard } from '../../components/modules/DashBoard';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/styles';
 import { CodeEditor } from '../../components/modules/CodeEditor';
 import { QuestionCardDetails } from '../../components/QuestionCardDetails';
@@ -21,19 +20,16 @@ export const PracticePage = () => {
   };
 
   const handleSubmit = async (code) => {
-    console.log(code);
     const res = await customAxios.post('/test', code, {
       headers: {
         'Content-Type': 'text/plain'
       }
     });
-    console.log(res.data);
     setOutput(res.data);
   };
 
   return (
     <>
-      <DashBoard />
       <Container>
         <Box mr={4} maxWidth={776} width={'100%'}>
           <Box

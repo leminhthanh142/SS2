@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
-    <AppBar position="sticky" sx={{ background: 'rgb(34, 34, 34)', boxShadow: 'none' }}>
+    <StyledAppBar position="sticky">
       <StyledToolbar>
+        <Link style={{ height: 64 }} to={'/'}>
+          <img src="/images/logo.png" alt="logo" width={64} height={64} />
+        </Link>
         <Stack direction={'row'} spacing={3}>
           <Button color="inherit">
             <Link to={'/courses'}>Courses</Link>
@@ -15,14 +18,22 @@ export const Header = () => {
           </Button>
         </Stack>
       </StyledToolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   [theme.breakpoints.up('sm')]: {
-    padding: '0 65px'
+    padding: '0 65px 0 0'
+  }
+}));
+
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  background: '#f5f1f1',
+  boxShadow: 'rgb(0 0 0 / 10%) 0px 0px 2px 2px',
+  '& a': {
+    color: '#232323'
   }
 }));
