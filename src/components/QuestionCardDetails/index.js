@@ -13,7 +13,7 @@ export const QuestionCardDetails = ({
   relevantTags
 }) => {
   return (
-    <StyledCard elevation={0}>
+    <StyledCard>
       <Box mb={2} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
         <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
           <StyledTag sx={{ mr: 2 }} label={difficultTag} />
@@ -34,12 +34,11 @@ export const QuestionCardDetails = ({
   );
 };
 
-const StyledCard = styled(Card)({
+const StyledCard = styled(Box)({
   height: 'calc(100% - 65px)',
-  backgroundColor: 'rgb(38, 39, 41)',
+  backgroundColor: '#ffffff',
   padding: '24px',
-  color: '#d9d9d9',
-  borderRadius: 0
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px'
 });
 
 const Title = styled(Typography)({
@@ -48,20 +47,15 @@ const Title = styled(Typography)({
 
 const StyledTag = styled(Chip)({
   borderRadius: 4,
-  color: '#d9d9d9',
-  backgroundColor: 'rgba(255,255,255,0.1)'
+  backgroundColor: 'rgba(55, 53, 47, 0.08)'
 });
 
 const StyledExample = styled(Typography)({
-  color: '#ffffff',
-  backgroundColor: 'rgb(23,23,25)',
   overflowX: 'auto',
   fontSize: '.875em',
-  lineHeight: '1.7142857',
-  marginTop: '1.7142857em',
-  marginBottom: '1.7142857em',
   borderRadius: '0.375rem',
-  padding: '0.8571429em 1.1428571em'
+  marginTop: 16,
+  marginBottom: 16
 });
 
 QuestionCardDetails.propTypes = {

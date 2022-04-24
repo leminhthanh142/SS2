@@ -39,7 +39,6 @@ export const JavaTutorial05 = () => {
                 for ([biến chạy]; [điều kiện]; [bước nhảy]) {
                   // ... body
                 }
-                
               `}
             </code>
           </pre>
@@ -120,7 +119,7 @@ export const JavaTutorial05 = () => {
           Đôi khi chúng ta sử dụng vòng lặp để tìm kiếm giá trị thích hợp và khi đã tìm thấy, chúng
           ta không muốn lặp nữa thì cần thoát khỏi vòng lặp . Vậy làm cách nào ? Với ví dụ sau :
         </StyledContent>
-        <Replit repo={'java-tutorial-52'} query={{ embed: true }} path={'Main.java'} />
+        <Replit repo={'java-tutorial-52'} query={{ lite: true }} path={'Main.java'} />
         <List>
           Với kết quả cả hai số 3 và 6 đều được in ra màn hình , khác với mong muốn chỉ tìm số đầu
           tiên chia hết cho 3 {'--->'} vậy nên chúng ta có từ khóa (keyword) break
@@ -194,7 +193,6 @@ export const JavaTutorial05 = () => {
                 do{
                   // … body
                 }while ([điều kiện]);
-                
               `}
             </code>
           </pre>

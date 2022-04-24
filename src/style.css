@@ -22,7 +22,7 @@ code {
     color: #ff4081;
     padding: 2px 4px;
     background: rgba(55, 53, 47, 0.08) !important;;
-    white-space: pre-line;
+    white-space: pre-wrap;
     display: inline-block;
     border-color: #d9d9d9;
     border-width: 1px;

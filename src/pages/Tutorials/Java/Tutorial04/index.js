@@ -50,14 +50,14 @@ export const JavaTutorial04 = () => {
         <StyledContent>
           <pre>
             <code style={{ width: '100%' }}>
-              if ([điều kiện]){' '}
-              {`{
+              {`
+              if ([điều kiện]) {
                 // if sẽ nhận vào true hoặc false
                 // nếu true phần bên trong {} sẽ được thực thi
                 // nếu false phần bên trong {} sẽ được bỏ qua
+                // tiếp tục thực thi phần còn lại
               }
-              // tiếp tục thực thi phần còn lại
-            `}
+              `}
             </code>
           </pre>
         </StyledContent>
@@ -95,15 +95,17 @@ export const JavaTutorial04 = () => {
         <StyledContent>
           <pre>
             <code style={{ width: '100%' }}>
-              {`switch ( variable ){
-                    case value1:
-                    // làm gì đó
-                    case value2:
-                    break; // cái này có vẻ quen quen nhỉ :D
-                    // làm gì đó
-                    default:
-                    // mặc định sẽ làm gì đó
-                }`}
+              {`
+              switch ( variable ){
+                case value1:
+                  // làm gì đó
+                case value2:
+                  break; // cái này có vẻ quen quen nhỉ :D
+                  // làm gì đó
+                default:
+                  // mặc định sẽ làm gì đó
+              }
+            `}
             </code>
           </pre>
         </StyledContent>

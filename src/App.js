@@ -17,6 +17,7 @@ import { JavaTutorial05 } from './pages/Tutorials/Java/Tutorial05';
 import { JsTutorialsPage } from './pages/Tutorials/JS';
 import { ReactTutorialsPage } from './pages/Tutorials/React';
 import { JsTutorial01 } from './pages/Tutorials/JS/Tutorial01';
+import { PracticeSolutionsPage } from './pages/Practice/Solutions';
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
             <Route path="/java-tutorials/3" element={<JavaTutorial03 />} />
             <Route path="/java-tutorials/4" element={<JavaTutorial04 />} />
             <Route path="/java-tutorials/5" element={<JavaTutorial05 />} />
-            <Route path="/practice/:id" element={<PracticePage />} />
+            <Route path="/practices/:id" element={<PracticePage />} />
+            <Route path="/practices/:id/solutions" element={<PracticeSolutionsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </FlashContextProvider>

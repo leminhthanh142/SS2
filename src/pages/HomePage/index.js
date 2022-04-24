@@ -4,8 +4,11 @@ import { Box, Button, Typography, Stack, styled, CardMedia, Card } from '@mui/ma
 import { CommonLayout } from '../../components/layout/common';
 import { Drawing } from '../../components/logos/Drawing';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { useAuth } from '../../context/authContext';
 
 export const HomePage = () => {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <CommonLayout>
       <Box mb={15}>

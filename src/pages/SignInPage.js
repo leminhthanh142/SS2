@@ -18,12 +18,14 @@ import { LockOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { customAxios } from '../customAxios';
 import { useFlash } from '../context/flashContext';
+import { useAuth } from '../context/authContext';
 
 const avatarStyle = { backgroundColor: '#1bbd7e' };
 const btnStyle = { margin: '8px 0' };
 
 export const SignInPage = () => {
   const { setFlash } = useFlash();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     username: '',
@@ -39,11 +41,13 @@ export const SignInPage = () => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      await customAxios.post('/auth/signin', {
+      const res = await customAxios.post('/auth/signin', {
         ...formValues
       });
       setFlash({ type: 'success', message: 'Login successfully!' });
-      navigate('/sign-in');
+      setUser(res.data);
+      localStorage.setItem('user', JSON.stringify(res.data));
+      navigate('/');
     } catch (err) {
       setFlash({ type: 'error', message: 'Can not login right now, please try again later!' });
     }

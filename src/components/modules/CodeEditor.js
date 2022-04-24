@@ -32,12 +32,13 @@ import { customAxios } from '../../customAxios';
 import { styled } from '@mui/styles';
 import { Lock } from '@mui/icons-material';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const defaultValue = `import java.util.*;
 
 public class Kata{
     public static void main (String[] args) {
-      Integer[] arr = new Integer[]{3,3,3,3,3};
+      Integer[] arr = new Integer[]{1,2,3,4,5};
       boolean isNiceArr = isNice(arr);
       System.out.println(isNiceArr);
     }
@@ -56,11 +57,6 @@ public class SolutionTest {
     @Test
     public void sampleTest() {
 \t\tassertEquals(Kata.isNice(new Integer[]{1,2,3,4,5}), true);
-\t\tassertEquals(Kata.isNice(new Integer[]{5,4,3,2,1}), true);
-\t\tassertEquals(Kata.isNice(new Integer[]{1,3,5,2}), false);
-\t\tassertEquals(Kata.isNice(new Integer[]{10,10,2,2,3}), false);
-\t\tassertEquals(Kata.isNice(new Integer[]{}), false);
-\t\tassertEquals(Kata.isNice(new Integer[]{1}), false);
     }
 }
 `;
@@ -72,16 +68,20 @@ export const CodeEditor = ({
   disableExampleTestScreen,
   readOnly,
   allowSubmitBtn,
-  height
+  height,
+  error,
+  practiceId
 }) => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(code || defaultValue);
-  const [theme, setTheme] = useState('one_dark');
+  const [theme, setTheme] = useState('xcode');
   const [mode, setMode] = useState('java');
   const [output, setOutput] = useState({
     content: '',
     error: ''
   });
   const [fontSize, setFontSize] = useState(14);
+  const [isShowUnlockButton, setIsShowUnlockButton] = useState(false);
 
   const handleChangeValue = (newValue) => {
     setValue(newValue);
@@ -100,6 +100,9 @@ export const CodeEditor = ({
     if (onChangeViewMode) {
       onChangeViewMode('output');
     }
+    if (!error) {
+      setIsShowUnlockButton(true);
+    }
   };
 
   const handleReset = () => {
@@ -107,7 +110,7 @@ export const CodeEditor = ({
   };
 
   const handleUnlockSolution = () => {
-    console.log('test');
+    navigate(`/practices/${practiceId}/solutions`);
   };
 
   return (
@@ -144,7 +147,10 @@ export const CodeEditor = ({
       {/*  </Box>*/}
       {/*</Box>*/}
       {!disableExampleTestScreen && (
-        <Box width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+        <Box
+          width={'100%'}
+          p={2}
+          sx={{ background: 'rgba(55, 53, 47, 0.08)', borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
           <Typography>Solution</Typography>
         </Box>
       )}
@@ -179,12 +185,19 @@ export const CodeEditor = ({
       )}
       {!disableExampleTestScreen && (
         <>
-          <Box mt={3} width={'100%'} p={2} sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+          <Box
+            mt={3}
+            width={'100%'}
+            p={2}
+            sx={{
+              background: 'rgba(55, 53, 47, 0.08)',
+              borderBottom: '1px solid rgba(0,0,0,0.1)'
+            }}>
             <Typography>Sample Tests</Typography>
           </Box>
           <AceEditor
             mode={'java'}
-            theme={'one_dark'}
+            theme={theme}
             name="react-ace-code-editor-sample-tests"
             value={sampleTest}
             width={'100%'}
@@ -206,13 +219,19 @@ export const CodeEditor = ({
           />
           <Box mt={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
             <Box display={'flex'} alignItems={'center'}>
-              <Button variant={'outlined'} color={'primary'} onClick={handleUnlockSolution}>
-                <Lock />{' '}
-                <Typography sx={{ ml: 1 }} component={'span'}>
-                  Unlocked Sample Solution
-                </Typography>
-              </Button>
-              <Button sx={{ ml: 2 }} variant={'outlined'} color={'primary'} onClick={handleReset}>
+              {isShowUnlockButton && (
+                <Button
+                  sx={{ mr: 2 }}
+                  variant={'outlined'}
+                  color={'primary'}
+                  onClick={handleUnlockSolution}>
+                  <Lock />{' '}
+                  <Typography sx={{ ml: 1 }} component={'span'}>
+                    Show More Solutions
+                  </Typography>
+                </Button>
+              )}
+              <Button variant={'outlined'} color={'primary'} onClick={handleReset}>
                 <Typography component={'span'}>Reset</Typography>
               </Button>
             </Box>
@@ -233,5 +252,7 @@ CodeEditor.propTypes = {
   disableExampleTestScreen: PropTypes.bool,
   readOnly: PropTypes.bool,
   allowSubmitBtn: PropTypes.bool,
-  height: PropTypes.number
+  height: PropTypes.number,
+  error: PropTypes.string,
+  practiceId: PropTypes.string
 };

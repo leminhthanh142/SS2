@@ -5,8 +5,14 @@ import { CodeEditor } from '../../components/modules/CodeEditor';
 import { QuestionCardDetails } from '../../components/QuestionCardDetails';
 import { customAxios } from '../../customAxios';
 import { CancelOutlined, CheckCircle } from '@mui/icons-material';
+import { PracticeLayout } from '../../components/layout/practiceLayout';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 export const PracticePage = () => {
+  const { id } = useParams();
+  const { user } = useAuth();
+
   const [viewMode, setViewMode] = useState('normal');
   const [output, setOutput] = useState({
     actual: '',
@@ -20,25 +26,19 @@ export const PracticePage = () => {
   };
 
   const handleSubmit = async (code) => {
-    const res = await customAxios.post('/test', code, {
-      headers: {
-        'Content-Type': 'text/plain'
-      }
+    const res = await customAxios.post('/v1/solutions/check', {
+      userId: user.id,
+      tutorialId: id,
+      solutionDetails: code
     });
     setOutput(res.data);
   };
 
   return (
-    <>
+    <PracticeLayout>
       <Container>
-        <Box mr={4} maxWidth={776} width={'100%'}>
-          <Box
-            display={'flex'}
-            width={'100%'}
-            pt={2}
-            pb={2}
-            pl={3}
-            sx={{ backgroundColor: 'rgb(38,39,41)' }}>
+        <Box mr={4} maxWidth={930} width={'100%'}>
+          <GroupButtonHeader pt={2} pb={2} pl={3}>
             <Button
               variant={viewMode === 'normal' ? 'contained' : 'outlined'}
               onClick={() => handleChangeViewMode('normal')}>
@@ -50,7 +50,7 @@ export const PracticePage = () => {
               onClick={() => handleChangeViewMode('output')}>
               <Typography fontSize={14}>Output</Typography>
             </Button>
-          </Box>
+          </GroupButtonHeader>
           {viewMode === 'normal' && (
             <QuestionCardDetails
               difficultTag={'Easy'}
@@ -64,15 +64,15 @@ export const PracticePage = () => {
                 </Typography>
               }
               example={
-                <code>
+                <code style={{ width: '100%', padding: 20 }}>
                   {`
-    [2,10,9,3] is Nice array because
-
+  [2,10,9,3] is Nice array because
+                
     2=3-1
     10=9+1
     3=2+1
     9=10-1
-           `}
+                  `}
                 </code>
               }
               note={
@@ -86,7 +86,7 @@ export const PracticePage = () => {
             />
           )}
           {viewMode === 'output' && (
-            <Box height={'calc(100% - 65px)'} sx={{ backgroundColor: 'rgb(23,23,25)' }} p={3}>
+            <StyledCard p={3}>
               {output.message === 'Correct' && (
                 <Box display={'flex'} alignItems={'center'}>
                   <Typography sx={{ color: '#4bb543' }}>All tests passed!</Typography>
@@ -100,7 +100,7 @@ export const PracticePage = () => {
                     <CancelOutlined sx={{ ml: 2, color: '#C73E1D' }} />
                   </Box>
                   <Typography>
-                    Expected: `&quot;{output.expected}`&quot; actual: `&quot;{output.actual}`&quot;
+                    Expected: &quot;{output.expected}&quot; actual: &quot;{output.actual}&quot;
                   </Typography>
                 </Box>
               )}
@@ -112,19 +112,37 @@ export const PracticePage = () => {
               )}
               {/*{output.actual && <code>{output.actual}</code>}*/}
               {output.error && <code style={{ color: '#C73E1D' }}>{output.error}</code>}
-            </Box>
+            </StyledCard>
           )}
         </Box>
-        <Box>
-          <CodeEditor onSubmit={handleSubmit} onChangeViewMode={handleChangeViewMode} />
+        <Box width={726}>
+          <CodeEditor
+            onSubmit={handleSubmit}
+            onChangeViewMode={handleChangeViewMode}
+            error={output.error || output.message === 'INCORRECT'}
+            practiceId={id}
+          />
         </Box>
       </Container>
-    </>
+    </PracticeLayout>
   );
 };
+
+const StyledCard = styled(Box)({
+  height: 'calc(100% - 65px)',
+  backgroundColor: '#ffffff',
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px'
+});
 
 const Container = styled(Box)({
   display: 'flex',
   padding: '0 24px',
-  margin: '24px 0 24px 64px'
+  marginLeft: '64px'
+});
+
+const GroupButtonHeader = styled(Box)({
+  boxShadow: 'rgb(0 0 0 / 6%) 0px 7px 25px 0px',
+  display: 'flex',
+  width: '100%',
+  marginBottom: 16
 });
