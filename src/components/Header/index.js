@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
-import { AppBar, Toolbar, Button, Stack, styled, Typography } from '@mui/material';
+import { AppBar, Toolbar, Button, Stack, styled } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { customAxios } from '../../customAxios';
+import { useAuth } from '../../context/authContext';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSignOut = useCallback(async () => {
     await customAxios.post('/auth/signout');
@@ -20,14 +22,16 @@ export const Header = () => {
         </Link>
         <Stack direction={'row'} spacing={3}>
           <Button color="inherit">
-            <Link to={'/practices/1'}>Practices</Link>
+            <Link to={'/practices'}>Practices</Link>
           </Button>
           <Button color="inherit">
             <Link to={'/courses'}>Courses</Link>
           </Button>
-          <Button color="inherit">
-            <Link to={'/sign-in'}>Login</Link>
-          </Button>
+          {!user && (
+            <Button color="inherit">
+              <Link to={'/sign-in'}>Login</Link>
+            </Button>
+          )}
           <Button sx={{ color: '#232323' }} onClick={handleSignOut}>
             Sign Out
           </Button>

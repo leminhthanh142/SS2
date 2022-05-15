@@ -6,7 +6,7 @@ import { Footer } from '../Footer';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
-export const CommonLayout = ({ children }) => {
+export const CommonLayout = ({ children, width }) => {
   useScrollToTop();
   const [isShowButton, setIsShowButton] = useState(false);
 
@@ -34,7 +34,7 @@ export const CommonLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container width={width}>{children}</Container>
       <Footer />
       <StyledButtonBacktoTop isShowButton={isShowButton} onClick={handleScrollToTop}>
         <ArrowUpwardIcon sx={{ color: '#ffffff' }} />
@@ -66,13 +66,14 @@ const StyledButtonBacktoTop = styled('div')(({ isShowButton }) => ({
   }
 }));
 
-const Container = styled('main')({
-  width: '64rem',
+const Container = styled('main')(({ width }) => ({
+  width: width ? width : '64rem',
   margin: '0 auto',
   paddingTop: '65px',
   minHeight: 'calc(100vh - 268px)'
-});
+}));
 
 CommonLayout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  width: PropTypes.string
 };

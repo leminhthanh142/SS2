@@ -5,14 +5,26 @@ import { QuestionCardDetails } from '../../../components/QuestionCardDetails';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { customAxios } from '../../../customAxios';
+import { useAuth } from '../../../context/authContext';
 
 export const PracticeSolutionsPage = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [solutions, setSolutions] = useState([]);
 
   useEffect(() => {
     fetchAllSolutions();
   }, []);
+
+  const handlePostComment = async (solutionId, comment) => {
+    await customAxios.post('/v1/comments', {
+      solutionId,
+      content: comment,
+      tutorialId: id,
+      userId: user.id
+    });
+    fetchAllSolutions();
+  };
 
   const fetchAllSolutions = useCallback(async () => {
     const res = await customAxios(`/v1/solutions/tutorials/${id}`);
@@ -59,7 +71,14 @@ export const PracticeSolutionsPage = () => {
       </Typography>
       <Stack spacing={3}>
         {solutions.map((item) => (
-          <SolutionCard key={item.id} solution={item.details} userName={item.user.username} />
+          <SolutionCard
+            key={item.id}
+            solutionId={item.id}
+            solution={item.details}
+            userName={item.username}
+            comments={item.comments}
+            onPostComment={handlePostComment}
+          />
         ))}
       </Stack>
     </CommonLayout>

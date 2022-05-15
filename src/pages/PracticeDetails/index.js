@@ -9,7 +9,7 @@ import { PracticeLayout } from '../../components/layout/practiceLayout';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 
-export const PracticePage = () => {
+export const PracticePageDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
 
