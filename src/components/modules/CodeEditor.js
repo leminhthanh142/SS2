@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/webpack-resolver';
-import { Box, FormControl, OutlinedInput, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const themes = [
@@ -28,8 +28,6 @@ themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
 import { Button } from '@mui/material';
-import { customAxios } from '../../customAxios';
-import { styled } from '@mui/styles';
 import { Lock } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +46,7 @@ public class Kata{
     }
 }`;
 
-const sampleTest = `
+const defaultTestCode = `
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import org.junit.runners.JUnit4;
@@ -65,15 +63,15 @@ export const CodeEditor = ({
   onSubmit,
   onChangeViewMode,
   code,
+  sampleTest,
   disableExampleTestScreen,
   readOnly,
   allowSubmitBtn,
   height,
   error,
-  practiceId
+  onUnlockSolution
 }) => {
-  const navigate = useNavigate();
-  const [value, setValue] = useState(code || defaultValue);
+  const [value, setValue] = useState(defaultValue);
   const [theme, setTheme] = useState('xcode');
   const [mode, setMode] = useState('java');
   const [output, setOutput] = useState({
@@ -82,6 +80,11 @@ export const CodeEditor = ({
   });
   const [fontSize, setFontSize] = useState(14);
   const [isShowUnlockButton, setIsShowUnlockButton] = useState(false);
+
+  useEffect(() => {
+    if (!code) return;
+    setValue(code);
+  }, [code]);
 
   const handleChangeValue = (newValue) => {
     setValue(newValue);
@@ -110,7 +113,7 @@ export const CodeEditor = ({
   };
 
   const handleUnlockSolution = () => {
-    navigate(`/practices/${practiceId}/solutions`);
+    onUnlockSolution();
   };
 
   return (
@@ -199,7 +202,7 @@ export const CodeEditor = ({
             mode={'java'}
             theme={theme}
             name="react-ace-code-editor-sample-tests"
-            value={sampleTest}
+            value={sampleTest || defaultTestCode}
             width={'100%'}
             height={350}
             readOnly
@@ -248,11 +251,12 @@ export const CodeEditor = ({
 CodeEditor.propTypes = {
   onSubmit: PropTypes.func,
   onChangeViewMode: PropTypes.func,
+  onUnlockSolution: PropTypes.func,
   code: PropTypes.string,
+  sampleTest: PropTypes.string,
   disableExampleTestScreen: PropTypes.bool,
   readOnly: PropTypes.bool,
   allowSubmitBtn: PropTypes.bool,
   height: PropTypes.number,
-  error: PropTypes.string,
-  practiceId: PropTypes.string
+  error: PropTypes.string
 };

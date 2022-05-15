@@ -3,7 +3,6 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { HomePage } from './pages/HomePage';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
-import { PracticePageDetails } from './pages/PracticeDetails';
 import { FlashContextProvider } from './context/flashContext';
 import { Flash } from './components/Flash';
 import { AuthContextProvider } from './context/authContext';
@@ -19,6 +18,14 @@ import { ReactTutorialsPage } from './pages/Tutorials/React';
 import { JsTutorial01 } from './pages/Tutorials/JS/Tutorial01';
 import { PracticeSolutionsPage } from './pages/PracticeDetails/Solutions';
 import { PracticePage } from './pages/PracticePage';
+import { PracticePageDetails1 } from './pages/PracticeDetails/Tut1';
+import { PracticePageDetails2 } from './pages/PracticeDetails/Tut2';
+import { PracticePageDetails3 } from './pages/PracticeDetails/Tut3';
+import { PracticePageDetails4 } from './pages/PracticeDetails/Tut4';
+import { PracticePageDetails5 } from './pages/PracticeDetails/Tut5';
+import { PracticePageDetails6 } from './pages/PracticeDetails/Tut6';
+import { PracticePageDetails7 } from './pages/PracticeDetails/Tut7';
+import { PracticePageDetails8 } from './pages/PracticeDetails/Tut8';
 
 function App() {
   return (
@@ -40,7 +47,14 @@ function App() {
             <Route path="/java-tutorials/3" element={<JavaTutorial03 />} />
             <Route path="/java-tutorials/4" element={<JavaTutorial04 />} />
             <Route path="/java-tutorials/5" element={<JavaTutorial05 />} />
-            <Route path="/practices/:id" element={<PracticePageDetails />} />
+            <Route path="/practices/1" element={<PracticePageDetails1 />} />
+            <Route path="/practices/2" element={<PracticePageDetails2 />} />
+            <Route path="/practices/3" element={<PracticePageDetails3 />} />
+            <Route path="/practices/4" element={<PracticePageDetails4 />} />
+            <Route path="/practices/5" element={<PracticePageDetails5 />} />
+            <Route path="/practices/6" element={<PracticePageDetails6 />} />
+            <Route path="/practices/7" element={<PracticePageDetails7 />} />
+            <Route path="/practices/8" element={<PracticePageDetails8 />} />
             <Route path="/practices" element={<PracticePage />} />
             <Route path="/practices/:id/solutions" element={<PracticeSolutionsPage />} />
             <Route path="*" element={<NotFoundPage />} />

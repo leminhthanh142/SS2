@@ -4,6 +4,7 @@ import { styled } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { LocalOfferOutlined } from '@mui/icons-material';
+import { StyledDifficultyTag } from '../elements/StyledDifficultyTag';
 
 export const QuestionCard = ({
   title,
@@ -51,48 +52,6 @@ const Title = styled(Typography)({
 
 const StyledRelevantTag = styled(Chip)({
   borderRadius: 4
-});
-
-const StyledDifficultyTag = styled(Chip)(({ level }) => {
-  const baseCss = `
-    border-radius: 4px;
-    border: 1px solid;
-    cursor: pointer;
-  `;
-
-  if (level === 1 || level === 2) {
-    return `
-      ${baseCss}
-    `;
-  }
-  if (level === 3 || level === 4) {
-    return `
-      ${baseCss}
-      color: #15b715;
-      background: #dffad7;
-    `;
-  }
-  if (level === 5) {
-    return `
-      ${baseCss}
-      color: #0095ff;
-      background: #00a5ff5c;
-    `;
-  }
-  if (level === 6 || level === 7) {
-    return `
-      ${baseCss}
-      color: #ff7700;
-      background: #ff77003d;
-    `;
-  }
-  if (level === 8) {
-    return `
-      ${baseCss}
-      color: #ff0000;
-      background: #ff00004f;
-    `;
-  }
 });
 
 QuestionCard.propTypes = {

@@ -13,10 +13,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import { CodeEditor } from '../../../components/modules/CodeEditor';
 import ForumIcon from '@mui/icons-material/Forum';
 import { useState } from 'react';
-import { useAuth } from '../../../context/authContext';
 import { Comment } from './Comment';
 
-export const SolutionCard = ({ userName, solution, comments, onPostComment, solutionId }) => {
+export const SolutionCard = ({
+  userName,
+  solution,
+  comments,
+  onPostComment,
+  solutionId,
+  onForkSolution
+}) => {
   const [openCommentInput, setOpenCommentInput] = useState(false);
   const [openComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState('');
@@ -43,6 +49,10 @@ export const SolutionCard = ({ userName, solution, comments, onPostComment, solu
     setComment('');
   };
 
+  const handleForkSolution = () => {
+    onForkSolution(solution);
+  };
+
   return (
     <Container>
       <Stack direction={'row'} spacing={1} alignItems={'center'} mb={1}>
@@ -59,7 +69,7 @@ export const SolutionCard = ({ userName, solution, comments, onPostComment, solu
             </Typography>
           </Button>
           <Divider orientation={'vertical'} sx={{ height: 30, ml: 1, mr: 1 }} />
-          <Button>
+          <Button onClick={handleForkSolution}>
             <Typography>Fork</Typography>
           </Button>
         </Box>
@@ -117,6 +127,7 @@ SolutionCard.propTypes = {
   userName: PropTypes.string,
   solution: PropTypes.string,
   onPostComment: PropTypes.func,
+  onForkSolution: PropTypes.func,
   solutionId: PropTypes.number,
   comments: PropTypes.arrayOf(PropTypes.object)
 };

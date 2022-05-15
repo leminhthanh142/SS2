@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Card, Typography, Chip } from '@mui/material';
+import { Box, Typography, Chip } from '@mui/material';
 import { styled } from '@mui/styles';
 import PropTypes from 'prop-types';
 import { LocalOfferOutlined } from '@mui/icons-material';
+import { StyledDifficultyTag } from '../elements/StyledDifficultyTag';
 
 export const QuestionCardDetails = ({
   title,
@@ -10,13 +11,14 @@ export const QuestionCardDetails = ({
   example,
   note,
   difficultTag,
+  difficultLevel,
   relevantTags
 }) => {
   return (
     <StyledCard>
       <Box mb={2} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
         <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
-          <StyledTag sx={{ mr: 2 }} label={difficultTag} />
+          <StyledDifficultyTag sx={{ mr: 2 }} level={difficultLevel} label={difficultTag} />
           <Title>{title}</Title>
         </Box>
       </Box>
@@ -64,5 +66,6 @@ QuestionCardDetails.propTypes = {
   example: PropTypes.node,
   note: PropTypes.string,
   difficultTag: PropTypes.string.isRequired,
+  difficultLevel: PropTypes.number.isRequired,
   relevantTags: PropTypes.arrayOf(PropTypes.string).isRequired
 };
