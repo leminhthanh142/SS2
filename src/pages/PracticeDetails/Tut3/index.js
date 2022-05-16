@@ -58,14 +58,14 @@ export const PracticePageDetails3 = () => {
   const handleSubmit = async (code) => {
     const res = await customAxios.post('/v1/solutions/check', {
       userId: user.id,
-      tutorialId: id,
+      tutorialId: 3,
       solutionDetails: code
     });
     setOutput(res.data);
   };
 
   const handleUnlockSolution = () => {
-    navigate(`/practices/${id}/solutions`);
+    navigate(`/practices/3/solutions`);
   };
 
   return (

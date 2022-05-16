@@ -23,8 +23,6 @@ export const PracticePageDetails1 = () => {
     setForkSolution(JSON.parse(forkSolution));
   }, []);
 
-  console.log(forkSolution);
-
   const [viewMode, setViewMode] = useState('normal');
   const [output, setOutput] = useState({
     actual: '',
@@ -40,14 +38,14 @@ export const PracticePageDetails1 = () => {
   const handleSubmit = async (code) => {
     const res = await customAxios.post('/v1/solutions/check', {
       userId: user.id,
-      tutorialId: id,
+      tutorialId: 1,
       solutionDetails: code
     });
     setOutput(res.data);
   };
 
   const handleUnlockSolution = () => {
-    navigate(`/practices/${id}/solutions`);
+    navigate(`/practices/1/solutions`);
   };
 
   return (
