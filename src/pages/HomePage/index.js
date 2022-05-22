@@ -1,16 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, Typography, Stack, styled, CardMedia, Card } from '@mui/material';
+import { Box, Typography, Stack, styled, CardMedia } from '@mui/material';
 import { CommonLayout } from '../../components/layout/common';
-import { Drawing } from '../../components/logos/Drawing';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { useAuth } from '../../context/authContext';
 import { LessonIcon } from '../../components/elements/LessonIcon';
-import { Header } from '../../components/Header';
 
 export const HomePage = () => {
-  const { user } = useAuth();
-
   return (
     <CommonLayout width={'100%'}>
       <Wrapper pt={10}>
@@ -46,7 +40,7 @@ export const HomePage = () => {
               <Link to={'/java-tutorials'}>
                 <StyledButton>
                   <img src="/images/illustration-student@2x.png" alt="" />
-                  <Typography sx={{ fontWeight: 500 }}>Bắt Đầu Học Thôi Nào</Typography>
+                  <Typography sx={{ fontWeight: 700 }}>Bắt Đầu Học Thôi Nào</Typography>
                 </StyledButton>
               </Link>
             </Box>
@@ -100,7 +94,7 @@ export const HomePage = () => {
         </Stack>
       </Container>
       <Wrapper>
-        <Box mt={15}>
+        <Stack mt={15}>
           <Heading variant={'h2'} align={'center'}>
             Bạn Sẽ Học Những Gì
           </Heading>
@@ -114,27 +108,41 @@ export const HomePage = () => {
                 <LessonIcon color={'#ff6651'} />
                 <Typography sx={{ color: '#ff6651' }}>7 bài học</Typography>
               </Stack>
-              <StyledContent>
-                <span>01</span> Giới thiệu Java căn bản
-              </StyledContent>
-              <StyledContent>
-                <span>02</span> Comment, Biến, kiểu dữ liệu trong Java
-              </StyledContent>
-              <StyledContent>
-                <span>03</span> Biểu thức, Statements ,Boolean expressions
-              </StyledContent>
-              <StyledContent>
-                <span>04</span> Câu lệnh rẽ nhánh
-              </StyledContent>
-              <StyledContent>
-                <span>05</span> Vòng lặp, lặp đi lặp lại
-              </StyledContent>
-              <StyledContent>
-                <span>06</span> Hàm - Phương thức (Method)
-              </StyledContent>
-              <StyledContent>
-                <span>07</span> Array - ArrayList - Mảng tập hợp các phần tử
-              </StyledContent>
+              <Link to={'/java-tutorials/1'}>
+                <StyledContent>
+                  <span>01</span> Giới thiệu Java căn bản
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/2'}>
+                <StyledContent>
+                  <span>02</span> Comment, Biến, kiểu dữ liệu trong Java
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/3'}>
+                <StyledContent>
+                  <span>03</span> Biểu thức, Statements ,Boolean expressions
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/4'}>
+                <StyledContent>
+                  <span>04</span> Câu lệnh rẽ nhánh
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/5'}>
+                <StyledContent>
+                  <span>05</span> Vòng lặp, lặp đi lặp lại
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/6'}>
+                <StyledContent>
+                  <span>06</span> Hàm - Phương thức (Method)
+                </StyledContent>
+              </Link>
+              <Link to={'/java-tutorials/7'}>
+                <StyledContent>
+                  <span>07</span> Array - ArrayList - Mảng tập hợp các phần tử
+                </StyledContent>
+              </Link>
             </StyledCard>
             <StyledCard>
               <Typography sx={{ fontWeight: 700, fontSize: 24 }}>02</Typography>
@@ -170,7 +178,7 @@ export const HomePage = () => {
               <img src="/images/chapter-02@2x.png" alt="" width={313} />
             </StyledCard>
           </Stack>
-        </Box>
+        </Stack>
       </Wrapper>
     </CommonLayout>
   );
