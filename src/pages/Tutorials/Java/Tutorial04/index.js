@@ -47,20 +47,11 @@ export const JavaTutorial04 = () => {
           <code>==</code> trong dòng <code>if(a == 10)</code> nhỉ ? Đó là vì dấu <code>=</code> đã
           được sử dụng cho phép gán đó :D . Tổng quát hơn chúng ta có :
         </StyledContent>
-        <StyledContent>
-          <pre>
-            <code style={{ width: '100%' }}>
-              {`
-              if ([điều kiện]) {
-                // if sẽ nhận vào true hoặc false
-                // nếu true phần bên trong {} sẽ được thực thi
-                // nếu false phần bên trong {} sẽ được bỏ qua
-                // tiếp tục thực thi phần còn lại
-              }
-              `}
-            </code>
-          </pre>
-        </StyledContent>
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial04/tut04-01.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent sx={{ fontStyle: 'italic' }}>
           ! Chú ý : nếu phần bên trong <code>{'{}'}</code> của <code>if</code> chỉ có 1{' '}
           <code>statements</code> chúng ta có thể bỏ qua dấu <code>{'{}'}</code>
@@ -92,23 +83,11 @@ export const JavaTutorial04 = () => {
       </Box>
       <Box mb={4}>
         <StyledContent sx={{ fontSize: 24, fontWeight: 700 }}># switch</StyledContent>
-        <StyledContent>
-          <pre>
-            <code style={{ width: '100%' }}>
-              {`
-              switch ( variable ){
-                case value1:
-                  // làm gì đó
-                case value2:
-                  break; // cái này có vẻ quen quen nhỉ :D
-                  // làm gì đó
-                default:
-                  // mặc định sẽ làm gì đó
-              }
-            `}
-            </code>
-          </pre>
-        </StyledContent>
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial04/tut04-02.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           <code>Switch</code> sẽ kiểm tra giá trị của <code>variable</code> ( bên trong{' '}
           <code>switch</code> ) và so sánh với từng giá trị khác nhau của các <code>case</code> từ

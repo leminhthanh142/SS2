@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, styled, Stack, Typography } from '@mui/material';
+import { Card, styled, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { CommonLayout } from '../components/layout/common';
 import { JavaLogo } from '../components/JavaLogo';
@@ -7,27 +7,15 @@ export const Course = () => {
   const navigate = useNavigate();
   return (
     <CommonLayout>
-      <Typography variant={'h2'}>Các Khóa Học Cơ Bản</Typography>
-      <Stack direction={'row'} spacing={5} mt={5}>
-        <StyledCard onClick={() => navigate('/js-tutorials')}>
-          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
-            <CardMedia component={'img'} image={'/images/logo/js-logo.webp'} />
-            <StyledTypography>JS Basic</StyledTypography>
-          </StyledStack>
-        </StyledCard>
-        <StyledCard onClick={() => navigate('/react-tutorials')}>
-          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
-            <CardMedia component={'img'} image={'/images/logo/react.png'} />
-            <StyledTypography>React Basic</StyledTypography>
-          </StyledStack>
-        </StyledCard>
-        <StyledCard onClick={() => navigate('/java-tutorials')}>
-          <StyledStack alignItems={'center'} justifyContent={'space-between'}>
-            <JavaLogo />
-            <StyledTypography>Java Basic</StyledTypography>
-          </StyledStack>
-        </StyledCard>
-      </Stack>
+      <Typography sx={{ mb: 5 }} variant={'h2'}>
+        Các Khóa Học Cơ Bản
+      </Typography>
+      <StyledCard onClick={() => navigate('/java-tutorials')}>
+        <StyledStack alignItems={'center'} justifyContent={'space-between'}>
+          <JavaLogo />
+          <StyledTypography>Java Basic</StyledTypography>
+        </StyledStack>
+      </StyledCard>
     </CommonLayout>
   );
 };

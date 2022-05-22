@@ -32,17 +32,11 @@ export const JavaTutorial05 = () => {
       </Box>
       <Box mb={4}>
         <StyledContent sx={{ fontSize: 24, fontWeight: 700 }}># Vòng lặp với for</StyledContent>
-        <StyledContent>
-          <pre>
-            <code style={{ width: '100%' }}>
-              {`
-                for ([biến chạy]; [điều kiện]; [bước nhảy]) {
-                  // ... body
-                }
-              `}
-            </code>
-          </pre>
-        </StyledContent>
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial05/tut05-01.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>Trước hết , chúng ta hãy thử Run thử đoạn code phía dưới nhé</StyledContent>
         <Replit repo={'java-tutorial-51'} query={{ embed: true }} path={'Main.java'} />
         <List>
@@ -139,17 +133,11 @@ export const JavaTutorial05 = () => {
       </Box>
       <Box mb={4}>
         <StyledContent sx={{ fontSize: 24, fontWeight: 700 }}># Vòng lặp với while</StyledContent>
-        <StyledContent>
-          <pre>
-            <code style={{ width: '100%' }}>
-              {`
-                while (true){
-                  // … body
-                }
-              `}
-            </code>
-          </pre>
-        </StyledContent>
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial05/tut05-02.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Trong khi vòng lặp <code>for</code> sử dụng khi ta có thể xác định được phạm vi lặp thì
           với <code>while</code> chúng ta kiểm tra điều kiện và lặp cho đến khi điều kiện lặp là{' '}
@@ -186,17 +174,11 @@ export const JavaTutorial05 = () => {
         <StyledContent sx={{ fontSize: 24, fontWeight: 700 }}>
           # Vòng lặp với do...while
         </StyledContent>
-        <StyledContent>
-          <pre>
-            <code style={{ width: '100%' }}>
-              {`
-                do{
-                  // … body
-                }while ([điều kiện]);
-              `}
-            </code>
-          </pre>
-        </StyledContent>
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial05/tut05-03.png'}
+          sx={{ mb: 2 }}
+        />
         <StyledContent>
           Người anh em cùng cha khác ông nội với <code>while</code>, chỉ khác một điều với{' '}
           <code>do…while</code> là phía bên trong <code>{'{}'}</code> sẽ được thực thi 1 lần trước

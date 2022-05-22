@@ -114,6 +114,72 @@ export const javaTutorials = [
         type: TagsType.Core
       }
     ]
+  },
+  {
+    id: 6,
+    title: '[Java-Core-06] Hàm - Phương thức (Method)',
+    path: '/java-tutorials/6',
+    tags: [
+      {
+        id: 1,
+        title: 'Java',
+        type: TagsType.Language
+      },
+      {
+        id: 2,
+        title: 'Basic',
+        type: TagsType.Basic
+      },
+      {
+        id: 3,
+        title: 'Core',
+        type: TagsType.Core
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: '[Java-Core-07] Array - ArrayList - Mảng tập hợp các phần tử',
+    path: '/java-tutorials/7',
+    tags: [
+      {
+        id: 1,
+        title: 'Java',
+        type: TagsType.Language
+      },
+      {
+        id: 2,
+        title: 'Basic',
+        type: TagsType.Basic
+      },
+      {
+        id: 3,
+        title: 'Core',
+        type: TagsType.Core
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: '[JAVA-CORE- Final ] Project tổng kết',
+    path: '/java-tutorials/8',
+    tags: [
+      {
+        id: 1,
+        title: 'Java',
+        type: TagsType.Language
+      },
+      {
+        id: 2,
+        title: 'Basic',
+        type: TagsType.Basic
+      },
+      {
+        id: 3,
+        title: 'Core',
+        type: TagsType.Core
+      }
+    ]
   }
 ];
 

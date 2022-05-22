@@ -70,7 +70,7 @@ const Container = styled('main')(({ width }) => ({
   width: width ? width : '64rem',
   margin: '0 auto',
   paddingTop: '65px',
-  minHeight: 'calc(100vh - 268px)'
+  minHeight: 'calc(100vh - 205px)'
 }));
 
 CommonLayout.propTypes = {
