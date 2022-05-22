@@ -209,7 +209,7 @@ export const PracticePage = () => {
 const FilterContainer = styled(Box)({
   position: 'sticky',
   backgroundColor: '#ffffff',
-  top: 105,
+  top: 65,
   left: 0,
   transition: 'all 0.3s',
   padding: '30px',
