@@ -39,7 +39,7 @@ export const Header = () => {
           <span>Course</span>
         </IconContainer>
       </Link>
-      {!user && (
+      {!Object.keys(user).length && (
         <Link href={'/sign-in'}>
           <IconContainer>
             <LoginIcon sx={{ color: '#ffffff' }} />
