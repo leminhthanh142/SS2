@@ -1,6 +1,5 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Stack, styled, Box, Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { customAxios } from '../../customAxios';
 import { useAuth } from '../../context/authContext';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
@@ -8,16 +7,26 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SchoolIcon from '@mui/icons-material/School';
 import LoginIcon from '@mui/icons-material/Login';
 import HomeIcon from '@mui/icons-material/Home';
+import { useFlash } from '../../context/flashContext';
 
 export const Header = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const { setFlash } = useFlash();
 
   const handleSignOut = useCallback(async () => {
     await customAxios.post('/auth/signout');
+    setUser({});
     localStorage.removeItem('user');
-    navigate('/sign-in');
+    setFlash({ type: 'success', message: 'Sign out successfully!' });
   }, []);
+
+  const isShowLogin = useMemo(() => {
+    return !Object.keys(user).length;
+  }, [user]);
+
+  const isShowSignout = useMemo(() => {
+    return !!Object.keys(user).length;
+  }, [user]);
 
   return (
     <Wrapper spacing={4}>
@@ -39,7 +48,7 @@ export const Header = () => {
           <span>Course</span>
         </IconContainer>
       </Link>
-      {!Object.keys(user).length && (
+      {isShowLogin && (
         <Link href={'/sign-in'}>
           <IconContainer>
             <LoginIcon sx={{ color: '#ffffff' }} />
@@ -47,7 +56,7 @@ export const Header = () => {
           </IconContainer>
         </Link>
       )}
-      {!!Object.keys(user).length && (
+      {isShowSignout && (
         <IconContainer onClick={handleSignOut}>
           <LogoutIcon sx={{ color: '#ffffff' }} />
           <span>Logout</span>
