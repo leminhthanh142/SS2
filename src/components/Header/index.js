@@ -47,10 +47,12 @@ export const Header = () => {
           </IconContainer>
         </Link>
       )}
-      <IconContainer onClick={handleSignOut}>
-        <LogoutIcon sx={{ color: '#ffffff' }} />
-        <span>Logout</span>
-      </IconContainer>
+      {!!Object.keys(user).length && (
+        <IconContainer onClick={handleSignOut}>
+          <LogoutIcon sx={{ color: '#ffffff' }} />
+          <span>Logout</span>
+        </IconContainer>
+      )}
     </Wrapper>
   );
 };

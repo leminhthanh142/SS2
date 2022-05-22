@@ -25,12 +25,16 @@ const btnStyle = { margin: '8px 0' };
 
 export const SignInPage = () => {
   const { setFlash } = useFlash();
-  const { setUser } = useAuth();
+  const { setUser, user } = useAuth();
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     username: '',
     password: ''
   });
+
+  useEffect(() => {
+    if (Object.keys(user).length) navigate('/');
+  }, [user]);
 
   const handleChangeFormValues = (e) => {
     setFormValues({
