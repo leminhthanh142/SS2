@@ -33,7 +33,7 @@ export const Header = () => {
           <span>Practices</span>
         </IconContainer>
       </Link>
-      <Link href={'/courses'}>
+      <Link href={'/java-tutorials'}>
         <IconContainer>
           <SchoolIcon sx={{ color: '#ffffff' }} />
           <span>Course</span>

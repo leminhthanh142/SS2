@@ -204,6 +204,14 @@ export const JavaTutorial08 = () => {
           image={'/images/tutorials/tutorial08/tut08-11.png'}
           sx={{ mb: 2 }}
         />
+        <StyledContent sx={{ fontStyle: 'italic', color: 'red' }}>
+          <code>8. public boolean editBook(Book book)</code>: chỉnh sửa book
+        </StyledContent>{' '}
+        <CardMedia
+          component={'img'}
+          image={'/images/tutorials/tutorial08/tut08-14.png'}
+          sx={{ mb: 2 }}
+        />
       </Box>
       <Box mb={5}>
         <StyledHeading>Main.java</StyledHeading>
@@ -228,7 +236,7 @@ export const JavaTutorial08 = () => {
           image={'/images/tutorials/tutorial08/tut08-13.png'}
           sx={{ mb: 2 }}
         />
-        <Replit repo={'java-final'} query={{ lite: true }} path={'Main.java'} height={850} />
+        <Replit repo={'java-final'} query={{ lite: true }} height={850} />
       </Box>
       <Box mb={5}>
         <StyledHeading>Lời kết</StyledHeading>
